@@ -1,0 +1,393 @@
+<?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * German strings for local_easyadmin.
+ *
+ * @package    local_easyadmin
+ * @copyright  2026 Moodle in Niedersachsen e. V.
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+defined('MOODLE_INTERNAL') || die();
+
+$string['accessescount_easyadmin'] = 'Zugriffe (letzte 7 Tage): {$a}';
+$string['accessescount_unavailable'] = 'Zugriffszahlen sind auf dieser Website aktuell nicht verfügbar (Standard-Logspeicher nicht aktiv).';
+$string['activeuserscount_easyadmin'] = 'Aktive Nutzer/innen (letzte 7 Tage): {$a}';
+$string['allowframembedding_easyadmin'] = 'Einbettung dieser Website in fremden Webseiten erlauben (Rahmen/iFrames)';
+$string['allowframembedding_easyadmin_help'] = 'Achtung: Diese Einstellung sollte in der Regel deaktiviert bleiben, da sie sogenannte Clickjacking-Angriffe erleichtern kann, bei denen Ihre Seite unsichtbar in eine fremde Webseite eingebettet wird.';
+$string['archive_alreadyhidden'] = '(bereits ausgeblendet)';
+$string['archive_cancel_button'] = 'Abbrechen';
+$string['archive_choosecategory_button'] = 'Kurse dieser Kategorie anzeigen';
+$string['archive_confirm_button'] = 'Ja, jetzt archivieren';
+$string['archive_confirm_intro'] = 'Die folgenden Kurse werden ausgeblendet und in die Archiv-Kategorie verschoben. Diese Aktion betrifft mehrere Kurse gleichzeitig - bitte die Liste sorgfältig prüfen:';
+$string['archive_continue_button'] = 'Weiter zur Bestätigung';
+$string['archive_defaultcategoryname'] = 'Archiv';
+$string['archive_nocategories'] = 'Es sind noch keine Kurskategorien vorhanden.';
+$string['archive_nocoursesincategory'] = 'In dieser Kategorie sind aktuell keine Kurse vorhanden.';
+$string['archive_targetcategoryname_easyadmin'] = 'Ziel-Kategorie für das Archiv';
+$string['archived_success'] = '{$a} Kurs(e) wurden erfolgreich archiviert.';
+$string['archiveheader'] = 'Kurse archivieren';
+$string['archiveintro'] = 'Blendet ausgewählte Kurse aus und verschiebt sie in eine Archiv-Kategorie. Ideal zum Schuljahresende.';
+$string['backgroundcolor'] = 'Hintergrundfarbe (falls kein Hintergrundbild)';
+$string['backgroundcolor_help'] = 'Wird nur verwendet, solange kein Hintergrundbild hochgeladen wurde.';
+$string['backgroundimage'] = 'Hintergrundbild';
+$string['backgroundimage_help'] = 'Wird als Hintergrund der gesamten Moodle-Website angezeigt. Überschreibt die Hintergrundfarbe, solange ein Bild hinterlegt ist.';
+$string['backtocourses_easyadmin'] = 'Zurück zur Kurse-Übersicht';
+$string['backtodashboard'] = 'Zurück zur Übersicht';
+$string['backtousers_easyadmin'] = 'Zurück zur Nutzer & Gruppen-Übersicht';
+$string['backup_confirm_button'] = 'Jetzt sichern';
+$string['backup_confirm_intro'] = 'Für die folgenden Kurse wird jetzt eine vollständige Sicherung erstellt. Je nach Kursgröße kann dies einige Minuten dauern:';
+$string['backup_done_intro'] = 'Die Sicherung ist fertig. Zum Herunterladen bitte auf die jeweilige Datei klicken:';
+$string['backup_downloadall_button'] = 'Alle als ZIP herunterladen';
+$string['backup_downloadlink'] = 'Sicherung herunterladen: {$a}';
+$string['backup_downloadlink_notice'] = 'Hinweis: Die Sicherungsdateien liegen in einem eigenen, geschützten Dateibereich dieses Plugins und sind nur für Nutzer/innen mit Zugriff auf diese Kachel abrufbar.';
+$string['backup_retention_notice'] = 'Sicherungsdateien werden automatisch nach 20 Tagen gelöscht (nächtliche Aufräum-Aufgabe).';
+$string['backupheader'] = 'Kurse sichern';
+$string['backupintro'] = 'Erstellt eine vollständige Sicherung (.mbz) einzelner Kurse zum direkten Herunterladen - im Unterschied zur automatischen Sicherung landet diese Datei nicht im gemeinsamen Sammelbereich, sondern kann gezielt für genau diesen einen Kurs wiederhergestellt werden, ganz ohne einen kompletten Server-Restore.';
+$string['bulkcategory_create_button'] = 'Kategorien anlegen';
+$string['bulkcategory_created_easyadmin'] = '{$a->created} Kategorie(n) wurden angelegt, {$a->skipped} bereits vorhandene übersprungen.';
+$string['bulkcategory_names_easyadmin'] = 'Namen (ein Eintrag pro Zeile)';
+$string['bulkcategory_names_easyadmin_help'] = 'Ein Name/Kürzel pro Zeile, z. B.:
+AM
+BC
+DE
+Bereits vorhandene Unterkategorien mit demselben Namen unter derselben übergeordneten Kategorie werden übersprungen, es entstehen also keine Dubletten.';
+$string['bulkcategory_parent_easyadmin'] = 'Übergeordnete Kategorie';
+$string['bulkcategory_parent_easyadmin_help'] = 'Alle unten eingetragenen Namen werden als Unterkategorien dieser Kategorie angelegt.';
+$string['bulkcategoryheader'] = 'Mehrere Unterkategorien auf einmal anlegen';
+$string['bulkcategoryintro'] = 'Praktisch z. B. für eine Unterkategorie je Lehrkraft-Kürzel unter einer übergeordneten Kategorie "Lehrkräfte" - einfach ein Kürzel/Name pro Zeile eintragen.';
+$string['bulkcohort_create_button'] = 'Globale Gruppen anlegen';
+$string['bulkcohort_created_easyadmin'] = '{$a->created} globale Gruppe(n) wurden angelegt, {$a->skipped} bereits vorhandene übersprungen.';
+$string['bulkcohort_names_easyadmin'] = 'Namen (ein Eintrag pro Zeile)';
+$string['bulkcohort_names_easyadmin_help'] = 'Ein Name pro Zeile, z. B.:
+Klasse 3a
+Klasse 3b
+Bereits vorhandene globale Gruppen mit demselben Namen werden übersprungen, es entstehen also keine Dubletten.';
+$string['bulkcohortheader'] = 'Mehrere globale Gruppen auf einmal anlegen';
+$string['bulkcohortintro'] = 'Legt mehrere globale Gruppen (Kohorten) gleichzeitig an.';
+$string['bulkcourse_create_button'] = 'Kurse anlegen';
+$string['bulkcourse_created_easyadmin'] = '{$a->created} Kurs(e) wurden angelegt, {$a->skipped} übersprungen (Kurzbezeichnung bereits vergeben), {$a->invalid} Zeile(n) im falschen Format ignoriert.';
+$string['bulkcourse_enrolnotice_easyadmin'] = 'Gilt für ALLE oben angelegten Kurse dieses Durchgangs.';
+$string['bulkcourse_entries_easyadmin'] = 'Kurse (ein Eintrag pro Zeile)';
+$string['bulkcourse_entries_easyadmin_help'] = 'Format je Zeile: Vollständiger Name;Kurzbezeichnung, z. B.:
+Mathematik Klasse 3a;MA3A
+Deutsch Klasse 3a;DE3A
+Zeilen mit bereits vergebener Kurzbezeichnung werden übersprungen, es entstehen also keine Dubletten.';
+$string['bulkcourseheader'] = 'Mehrere Kurse auf einmal anlegen';
+$string['bulkcourseintro'] = 'Legt mehrere Kurse gleichzeitig in derselben Kategorie an.';
+$string['bulkuser_create_button'] = 'Nutzer anlegen';
+$string['bulkuser_created_easyadmin'] = '{$a->created} Nutzer wurden angelegt, {$a->skipped} übersprungen (Anmeldename/E-Mail bereits vergeben oder ungültig), {$a->invalid} Zeile(n) im falschen Format ignoriert.';
+$string['bulkuser_entries_easyadmin'] = 'Nutzer/innen (ein Eintrag pro Zeile)';
+$string['bulkuser_entries_easyadmin_help'] = 'Format je Zeile: Vorname;Nachname;E-Mail;Anmeldename, z. B.:
+Anna;Muster;anna.muster@schule.de;amuster
+Ben;Beispiel;ben.beispiel@schule.de;bbeispiel
+Zeilen mit bereits vergebenem Anmeldenamen oder ungültiger/bereits verwendeter E-Mail-Adresse werden übersprungen. Über diesen Weg werden keine Administrator-Konten vergeben - nutzen Sie dafür das Einzelformular oben.';
+$string['bulkuser_passwordnotice'] = 'Wichtig: Notieren Sie sich die folgenden Passwörter jetzt - sie werden aus Sicherheitsgründen nirgends gespeichert und können später nicht erneut angezeigt werden. Alle Konten müssen das Passwort bei der ersten Anmeldung ändern.';
+$string['bulkuserheader'] = 'Mehrere Nutzer auf einmal anlegen';
+$string['bulkuserintro'] = 'Legt mehrere manuelle Nutzerkonten gleichzeitig an. Passwörter werden automatisch erzeugt und nach dem Anlegen einmalig angezeigt.';
+$string['cachesheader'] = 'Caches leeren';
+$string['cachesintro'] = 'Falls Änderungen (z. B. am Design) nicht sofort sichtbar werden, kann das Leeren der Caches helfen.';
+$string['cachespurged'] = 'Die Caches wurden geleert.';
+$string['categoriesheader'] = 'Kategorien erstellen';
+$string['categoriesintro'] = 'Kategorien helfen, Kurse übersichtlich zu ordnen - z. B. nach Jahrgangsstufe oder Fach.';
+$string['categorycount_easyadmin'] = 'Aktuell vorhandene Kategorien: {$a}';
+$string['categorycreated_easyadmin'] = 'Die Kategorie "{$a}" wurde angelegt.';
+$string['categorydescription_easyadmin'] = 'Beschreibung (optional)';
+$string['categoryname_easyadmin'] = 'Name der Kategorie';
+$string['categoryparent_easyadmin'] = 'Übergeordnete Kategorie';
+$string['categoryparent_top_easyadmin'] = 'Keine (oberste Ebene)';
+$string['categoryrole_header_easyadmin'] = 'Rolle in dieser Kategorie zuweisen (optional)';
+$string['categoryrole_notassigned_easyadmin'] = 'Hinweis: Die Rolle konnte nicht zugewiesen werden (unbekannte Rolle oder fehlende Berechtigung).';
+$string['categoryrole_role_coursecreator_easyadmin'] = 'Kursersteller/in';
+$string['categoryrole_role_easyadmin'] = 'Rolle';
+$string['categoryrole_role_easyadmin_help'] = 'Welche Rolle die gewählte Person im Kontext dieser Kategorie erhält. „Kursersteller/in“ darf Kurse in der Kategorie anlegen. „Manager/in“ hat weitergehende Verwaltungsrechte in der Kategorie. Es lassen sich nur Rollen vergeben, die Sie selbst vergeben dürfen.';
+$string['categoryrole_role_manager_easyadmin'] = 'Manager/in';
+$string['categoryrole_user_easyadmin'] = 'Person';
+$string['categoryrole_user_easyadmin_help'] = 'Optional: Wählen Sie eine Person aus, die in der neu angelegten Kategorie automatisch eine Rolle erhalten soll. Bleibt das Feld leer, wird keine Rolle zugewiesen.';
+$string['categoryrole_user_none_easyadmin'] = '— keine (keine Rollenzuweisung) —';
+$string['cohortcount_easyadmin'] = 'Aktuell vorhandene globale Gruppen: {$a}';
+$string['cohortcreated_easyadmin'] = 'Die globale Gruppe "{$a}" wurde angelegt.';
+$string['cohortdescription_easyadmin'] = 'Beschreibung (optional)';
+$string['cohortenrol_easyadmin'] = 'Globale Gruppe als Teilnehmer/innen verknüpfen';
+$string['cohortenrol_easyadmin_help'] = 'Verknüpft eine globale Gruppe (Kohorte) automatisch mit dem Kurs - alle aktuellen und künftigen Mitglieder werden dadurch fortlaufend als Teilnehmer/innen eingeschrieben, ohne dass Sie das manuell nachpflegen müssen.';
+$string['cohortidnumber_easyadmin'] = 'Kennung (optional)';
+$string['cohortidnumber_easyadmin_help'] = 'Eine eindeutige interne Kennung, z. B. für den Import/Export. Kann leer gelassen werden.';
+$string['cohortname_easyadmin'] = 'Name der Gruppe';
+$string['cohortoption_none_easyadmin'] = 'Keine';
+$string['cohortsheader'] = 'Globale Gruppen';
+$string['cohortsintro'] = 'Kohorten sind Gruppen, die kursübergreifend gelten - z. B. eine ganze Klasse, die in mehreren Kursen gleichzeitig Mitglied ist.';
+$string['communicationintro'] = 'Kommunikationsfunktionen Ihrer Website an einem Ort.';
+$string['communicationsaved'] = 'Die Kommunikations-Einstellungen wurden gespeichert.';
+$string['coursecategory_easyadmin'] = 'Kategorie';
+$string['coursecount_easyadmin'] = 'Kurse insgesamt: {$a}';
+$string['coursecreated_easyadmin'] = 'Der Kurs "{$a}" wurde angelegt.';
+$string['coursesdashboardintro'] = 'Wählen Sie einen Bereich aus.';
+$string['coursevisible_easyadmin'] = 'Für Teilnehmer/innen sichtbar';
+$string['createcategory_easyadmin'] = 'Kategorie anlegen';
+$string['createcohort_easyadmin'] = 'Globale Gruppe anlegen';
+$string['createcourse_easyadmin'] = 'Kurs anlegen';
+$string['createcoursesheader'] = 'Kurse anlegen';
+$string['createcoursesintro'] = 'Legt einen neuen Kurs an.';
+$string['createuser_easyadmin'] = 'Nutzerkonto anlegen';
+$string['createusersheader'] = 'Neues Nutzerkonto anlegen';
+$string['createusersintro'] = 'Legt ein neues, manuelles Nutzerkonto an (keine Anmeldung über SSO/LDAP o. ä.).';
+$string['dashboardtitle'] = 'Schul-Administration';
+$string['debugmode_active_notice'] = 'Achtung: Der Debug-Modus ist aktuell aktiv. Bitte denken Sie daran, ihn nach der Fehlersuche wieder zu deaktivieren.';
+$string['debugmode_enabled'] = 'Debug-Modus aktivieren';
+$string['debugmode_enabled_help'] = 'Zeigt ausführliche technische Fehlermeldungen auf der Website an. Nur zur gezielten Fehlersuche kurzzeitig aktivieren und danach wieder ausschalten.';
+$string['debugmode_warning'] = 'Wichtig: Der Debug-Modus zeigt zusätzliche technische Informationen an, die für die Fehlersuche hilfreich sind, aber auch sensible Details preisgeben können. Bitte nach der Fehlersuche unbedingt wieder deaktivieren.';
+$string['delete_acknowledge_easyadmin'] = 'Ich bin mir bewusst, dass diese Kurse endgültig und unwiderruflich gelöscht werden.';
+$string['delete_confirm_button'] = 'Endgültig löschen';
+$string['delete_confirm_intro'] = 'Die folgenden Kurse werden UNWIDERRUFLICH gelöscht, inklusive aller Inhalte, Teilnehmer/innen-Daten und Bewertungen:';
+$string['deleted_success_easyadmin'] = '{$a} Kurs(e) wurden endgültig gelöscht.';
+$string['deleteheader'] = 'Kurse löschen';
+$string['deleteintro'] = 'Achtung: Gelöschte Kurse können nicht wiederhergestellt werden. Erwägen Sie stattdessen "Kurse archivieren" weiter oben, falls Sie sich nicht ganz sicher sind, oder erstellen Sie vorher eine Sicherung unter "Kurse sichern".';
+$string['designintro'] = 'Passen Sie das Erscheinungsbild Ihres Moodles an. Änderungen wirken sich sofort auf die gesamte Website aus.';
+$string['designsaved'] = 'Die Design-Einstellungen wurden gespeichert.';
+$string['displayloginfailures_easyadmin'] = 'Nutzer/innen über fehlgeschlagene Anmeldeversuche informieren';
+$string['displayloginfailures_easyadmin_help'] = 'Zeigt Nutzer/innen nach der Anmeldung, wie oft seit dem letzten Login fehlgeschlagene Anmeldeversuche mit ihrem Konto unternommen wurden.';
+$string['easyadmin:managecommunication'] = 'Kommunikationsfunktionen über das Dashboard verwalten';
+$string['easyadmin:managecourses'] = 'Kurse über das Dashboard verwalten';
+$string['easyadmin:managedesign'] = 'Design-Einstellungen über das Dashboard ändern';
+$string['easyadmin:managemaintenance'] = 'Wartungsfunktionen und Berichte über das Dashboard nutzen';
+$string['easyadmin:managenews'] = 'Startseiten-Einstellungen über das Dashboard verwalten';
+$string['easyadmin:manageprivacy'] = 'Sicherheits- und Datenschutz-Einstellungen über das Dashboard verwalten';
+$string['easyadmin:manageschooltiles'] = 'Einstellungen der Schul-Kacheln über das Dashboard aufrufen';
+$string['easyadmin:manageusers'] = 'Nutzer/Gruppen über das Dashboard verwalten';
+$string['easyadmin:view'] = 'Schul-Administrations-Dashboard aufrufen';
+$string['emailclient_enabled_easyadmin'] = 'Mail-System aktivieren';
+$string['emailclient_enabled_easyadmin_help'] = 'Aktiviert oder deaktiviert das interne Mail-System für Nutzer. Ist es deaktiviert, wird der E-Mail-Client aus der Navigation ausgeblendet und der Zugriff für alle außer Administrator/innen gesperrt.';
+$string['emailclient_fullsettings_easyadmin'] = 'Alle Mail-Einstellungen öffnen';
+$string['emailclientheader'] = 'E-Mail-Client (optionales Zusatzmodul)';
+$string['enrolheader_easyadmin'] = 'Einschreibung (optional)';
+$string['error_autoclose_range'] = 'Bitte einen Wert zwischen 0 und 120 Sekunden angeben.';
+$string['error_bulkcategory_toomany'] = 'Bitte maximal 200 Einträge auf einmal eingeben.';
+$string['error_cohortidnumbertaken'] = 'Diese Kennung wird bereits verwendet.';
+$string['error_deletenotacknowledged'] = 'Bitte das Häkchen "Ich bin mir bewusst..." setzen, um die Löschung zu bestätigen.';
+$string['error_emailtaken'] = 'Diese E-Mail-Adresse wird bereits von einem anderen Konto verwendet.';
+$string['error_invalidcolor'] = 'Bitte eine gültige Farbe im Format #RRGGBB angeben.';
+$string['error_invalidemail'] = 'Bitte eine gültige E-Mail-Adresse angeben.';
+$string['error_invalidurl'] = 'Bitte eine gültige, auf diese Website bezogene Adresse angeben.';
+$string['error_invalidusername'] = 'Der Anmeldename darf nur Kleinbuchstaben, Ziffern sowie . - _ @ enthalten.';
+$string['error_lockoutthreshold_range'] = 'Bitte einen Wert zwischen 1 und 100 angeben.';
+$string['error_minpasswordlength_range'] = 'Bitte einen Wert zwischen 4 und 64 angeben.';
+$string['error_nocoursesselected'] = 'Es wurde kein Kurs ausgewählt.';
+$string['error_notargetcategory'] = 'Bitte eine gültige Zielkategorie auswählen.';
+$string['error_passwordpart_range'] = 'Bitte einen Wert zwischen 0 und 20 angeben.';
+$string['error_required'] = 'Dieses Feld darf nicht leer sein.';
+$string['error_shortnametaken_easyadmin'] = 'Diese Kurzbezeichnung wird bereits von einem anderen Kurs verwendet.';
+$string['error_teachernotfound_easyadmin'] = 'Es wurde kein Nutzerkonto mit diesem Anmeldenamen oder dieser E-Mail-Adresse gefunden.';
+$string['error_usernametaken'] = 'Dieser Anmeldename ist bereits vergeben.';
+$string['field_logo'] = 'Schul-Logo';
+$string['field_logo_help'] = 'Wird im Kopfbereich, auf der Anmeldeseite und in E-Mails/PDF-Dokumenten angezeigt. Empfohlen: PNG mit transparentem Hintergrund.';
+$string['forcelogin_easyadmin'] = 'Anmeldung für die gesamte Website erzwingen';
+$string['forcelogin_easyadmin_help'] = 'Wenn aktiviert, können nicht angemeldete Besucher/innen keinerlei Inhalte der Website sehen (auch nicht die Startseite) - sie werden direkt zur Anmeldeseite geleitet.';
+$string['forcepasswordchange_easyadmin'] = 'Passwort bei erster Anmeldung ändern lassen';
+$string['frontpage_easyadmin'] = 'Ansicht vor der Anmeldung';
+$string['frontpage_easyadmin_help'] = 'Was nicht angemeldete Besucher/innen auf der Startseite sehen. Hinweis: Falls in der Website-Administration bisher mehrere Ansichten kombiniert waren, wird beim Speichern hier nur die gewählte einzelne Option verwendet.';
+$string['frontpageintro'] = 'Grundlegende Angaben zu Ihrer Website sowie was Besucher/innen vor bzw. nach der Anmeldung auf der Startseite sehen.';
+$string['frontpageloggedin_easyadmin'] = 'Ansicht nach der Anmeldung';
+$string['frontpageloggedin_easyadmin_help'] = 'Was angemeldete Nutzer/innen auf der Startseite sehen. Hinweis: Falls in der Website-Administration bisher mehrere Ansichten kombiniert waren, wird beim Speichern hier nur die gewählte einzelne Option verwendet.';
+$string['frontpageoption_allcourses'] = 'Liste aller Kurse';
+$string['frontpageoption_categories'] = 'Kategorienamen';
+$string['frontpageoption_combo'] = 'Kombinierte Kategorien-/Kursliste';
+$string['frontpageoption_coursesearch'] = 'Kurssuche';
+$string['frontpageoption_enrolledcourses'] = 'Liste der eingeschriebenen Kurse';
+$string['frontpageoption_news'] = 'Aktuelle Nachrichten';
+$string['frontpageoption_none'] = 'Keine Anzeige';
+$string['frontpagesaved'] = 'Die Startseiten-Einstellungen wurden gespeichert.';
+$string['frontpagesummary_easyadmin'] = 'Informationen zur Website';
+$string['frontpagesummary_easyadmin_help'] = 'Kurzer Beschreibungstext zu Ihrer Schule/Website. Hinweis: Hier ist nur einfacher Text ohne Formatierung möglich; für Bilder oder Formatierungen weiterhin Website-Administration > Allgemein > Startseite nutzen.';
+$string['guestloginbutton_easyadmin'] = 'Gastzugang-Button auf der Anmeldeseite anzeigen';
+$string['guestloginbutton_easyadmin_help'] = 'Zeigt auf der Anmeldeseite einen zusätzlichen Button, über den sich Besucher/innen ohne eigenes Konto als Gast anmelden können (mit eingeschränkten Rechten).';
+$string['localmail_fullsettings_easyadmin'] = 'Alle Mail-Einstellungen öffnen';
+$string['localmail_status_easyadmin'] = 'Internes E-Mail-System (local_mail). Der Zugriff wird über die Moodle-Rollenverwaltung gesteuert.';
+$string['localmailheader'] = 'E-Mail';
+$string['lockoutthreshold_easyadmin'] = 'Sperre nach so vielen fehlgeschlagenen Anmeldeversuchen';
+$string['lockoutthreshold_easyadmin_help'] = 'Nach dieser Anzahl fehlgeschlagener Anmeldeversuche wird das betroffene Konto vorübergehend gesperrt, um es vor Erraten des Passworts zu schützen.';
+$string['loginpage_hidedefaultimage'] = 'Standard-Bild auf der Anmeldeseite ausblenden/ersetzen';
+$string['loginpage_hidedefaultimage_help'] = 'Blendet das von Moodle standardmäßig angezeigte Bild auf der Anmeldeseite aus. Wird zusätzlich ein eigenes Bild hochgeladen, wird dieses stattdessen angezeigt. Hinweis: Je nach Moodle-Version kann die genaue Wirkung leicht variieren, da sich die Anmeldeseite technisch weiterentwickelt.';
+$string['loginpage_image'] = 'Eigenes Bild für die Anmeldeseite';
+$string['loginpage_image_help'] = 'Ersetzt das Standardbild auf der Anmeldeseite durch ein eigenes Bild, z. B. ein Schulfoto.';
+$string['loginpage_instructions'] = 'Hinweistext auf der Anmeldeseite';
+$string['loginpage_instructions_help'] = 'Dieser Text erscheint links neben dem Anmeldeformular in einer grauen Box, z. B. als kurze Erklärung, wer sich hier anmeldet oder an wen man sich bei Problemen wendet.
+
+Es handelt sich um dieselbe Einstellung wie „Anleitung“ unter Website-Administration → Anmelden → Anmeldeeinstellungen. Eine Änderung hier wirkt sofort auf der echten Anmeldeseite.
+
+Wenn das Feld leer bleibt, zeigt Moodle wieder seinen eigenen Standardtext an.';
+$string['loginpageheader'] = 'Anmeldeseite';
+$string['loglifetime_easyadmin'] = 'Logdaten aufbewahren für';
+$string['loglifetime_easyadmin_help'] = 'Legt fest, wie lange Moodle Protokolldaten (wer hat wann was gemacht) speichert, bevor sie automatisch gelöscht werden. Aus Datenschutzgründen bietet diese Auswahl bewusst keine "Nie löschen"-Option an. Werte unter 30 Tagen werden nicht empfohlen, da dann z. B. Statistiken nicht mehr zuverlässig funktionieren.';
+$string['logretention_current'] = 'Aktueller Wert: {$a} Tage';
+$string['logretention_days'] = '{$a} Tage';
+$string['logretention_never'] = 'Nie löschen';
+$string['logretention_never_current'] = 'Aktuell: Nie löschen (aus Datenschutzgründen bitte ändern)';
+$string['logretentionheader'] = 'Log-Aufbewahrung';
+$string['maintenanceheader'] = 'Fehlersuche (Debug-Modus)';
+$string['maintenancesaved'] = 'Die Wartungs-Einstellungen wurden gespeichert.';
+$string['makeadmin_easyadmin'] = 'Diese Person zum Website-Administrator/zur Website-Administratorin machen';
+$string['makeadmin_easyadmin_help'] = 'Nur sichtbar, wenn Sie selbst bereits vollen Administratorzugriff haben. Verleiht der neuen Person dieselben, uneingeschränkten Rechte wie Ihnen selbst.';
+$string['makeadmin_warning'] = 'Achtung: Diese Person erhält damit vollen Administratorzugriff auf die gesamte Website. Bitte nur vergeben, wenn wirklich nötig. Administrator-Konten sollten aus Sicherheitsgründen immer manuelle Konten sein (kein SSO) - das ist bei einem über dieses Formular angelegten Konto automatisch der Fall.';
+$string['managecohorts_easyadmin'] = 'Globale Gruppen vollständig verwalten (Mitglieder hinzufügen, Import etc.)';
+$string['managecohorts_easyadmin_notice'] = 'Hinweis: Für die vollständige Verwaltung wird zusätzlich zu den Rechten dieses Dashboards die Berechtigung "moodle/cohort:manage" benötigt.';
+$string['manualaccount_notice'] = 'Dieses Formular legt ausschließlich manuelle Konten an - also Konten mit eigenem Anmeldenamen und Passwort, unabhängig von einer eventuell vorhandenen Single-Sign-On-Anmeldung.';
+$string['maxconsecutiveidentchars_easyadmin'] = 'Aufeinanderfolgende identische Zeichen';
+$string['maxconsecutiveidentchars_easyadmin_help'] = 'Passwörter dürfen maximal diese Zahl aufeinanderfolgender gleicher Zeichen haben. Der Wert 0 deaktiviert diese Prüfung.';
+$string['messaging_easyadmin'] = 'Mitteilungssystem aktivieren';
+$string['messaging_easyadmin_help'] = 'Schaltet das Moodle-interne Mitteilungssystem ein oder aus (das Sprechblasen-Symbol oben im Seitenkopf). Ist es deaktiviert, können Nutzer/innen einander keine internen Mitteilungen mehr senden. Entspricht der Einstellung „Mitteilungssystem aktivieren“ unter Website-Administration → Allgemein → Erweiterte Einstellungen.';
+$string['messagingheader'] = 'Mitteilungen';
+$string['minpassworddigits_easyadmin'] = 'Ziffern';
+$string['minpassworddigits_easyadmin_help'] = 'Passwörter müssen mindestens die angegebene Zahl von Ziffern enthalten.';
+$string['minpasswordlength_easyadmin'] = 'Mindestlänge des Passworts';
+$string['minpasswordlower_easyadmin'] = 'Kleinbuchstaben';
+$string['minpasswordlower_easyadmin_help'] = 'Passwörter müssen mindestens die angegebene Zahl von Kleinbuchstaben enthalten.';
+$string['minpasswordnonalphanum_easyadmin'] = 'Sonderzeichen';
+$string['minpasswordnonalphanum_easyadmin_help'] = 'Passwörter müssen mindestens die angegebene Zahl von Sonderzeichen enthalten.';
+$string['minpasswordupper_easyadmin'] = 'Großbuchstaben';
+$string['minpasswordupper_easyadmin_help'] = 'Passwörter müssen mindestens die angegebene Zahl von Großbuchstaben enthalten.';
+$string['move_confirm_button'] = 'Jetzt verschieben';
+$string['move_confirm_intro'] = 'Die folgenden Kurse werden in die Kategorie "{$a}" verschoben:';
+$string['move_targetcategory_easyadmin'] = 'Zielkategorie';
+$string['moved_success_easyadmin'] = '{$a} Kurs(e) wurden verschoben.';
+$string['moveheader'] = 'Kurse verschieben';
+$string['moveintro'] = 'Verschiebt ausgewählte Kurse in eine andere Kategorie.';
+$string['nopermissiontiles'] = 'Für Ihr Konto sind aktuell keine Bereiche freigeschaltet. Bitte wenden Sie sich an Moodle in Niedersachsen e. V., falls Sie Zugriff benötigen.';
+$string['pagewidth'] = 'Maximale Seitenbreite';
+$string['pagewidth_default'] = 'Standard (Moodle-Standard)';
+$string['pagewidth_full'] = 'Volle Breite (100%)';
+$string['pagewidth_help'] = 'Passt die maximale Breite des Inhaltsbereichs an, ohne dass SCSS-Code bearbeitet werden muss. „Standard“ lässt die von Moodle bzw. dem Theme vorgegebene Breite unverändert.';
+$string['pagewidth_medium'] = 'Mittel (1200px)';
+$string['pagewidth_wide'] = 'Breit (1400px)';
+$string['password_easyadmin'] = 'Passwort';
+$string['password_easyadmin_help'] = 'Muss die auf dieser Website hinterlegte Passwortrichtlinie erfüllen (siehe Kachel "Sicherheit und Datenschutz").';
+$string['passwordpolicy_easyadmin'] = 'Passwortregeln aktivieren';
+$string['passwordpolicy_easyadmin_help'] = 'Erzwingt bei neuen bzw. geänderten Passwörtern eine Mindestlänge (siehe Feld darunter).';
+$string['placeholder_comingsoon'] = 'Dieser Bereich wird gerade eingerichtet und steht in Kürze zur Verfügung.';
+$string['pluginname'] = 'Einfache Schul-Administration';
+$string['policytool_heading'] = 'Ausführliche Richtlinien (optional)';
+$string['policytool_hint'] = 'Moodle bietet eine eigene Verwaltung für vollständige Dokumente wie Datenschutzerklärung oder Nutzungsordnung, inklusive Versionierung und Zustimmungspflicht beim Login. Achtung: Dafür wird zusätzlich zu den Rechten dieses Dashboards die Berechtigung "tool/policy:managedocs" benötigt - falls der Button unten "Kein Zugriff" meldet, wenden Sie sich an die technische Betreuung, damit diese Berechtigung ergänzt wird.';
+$string['policytool_linktext'] = 'Zur Moodle-Richtlinienverwaltung';
+$string['privacy:metadata'] = 'Das Plugin „Einfache Schul-Administration“ speichert selbst keine dauerhaften Nutzerprofil-Daten. Die Kachel „Kurse sichern“ legt jedoch vorübergehend (max. 20 Tage) Kurs-Sicherungsdateien im eigenen Dateibereich ab, die über das core_files-Subsystem verwaltete Teilnehmer/innen-Daten enthalten können.';
+$string['privacyheader'] = 'Datenschutz';
+$string['purgecachesbutton'] = 'Caches jetzt leeren';
+$string['reportsheader'] = 'Berichte';
+$string['reportsintro'] = 'Ein kurzer Überblick über die Nutzung Ihrer Website in den letzten 7 Tagen.';
+$string['schooltile_add'] = 'Neue Kachel hinzufügen';
+$string['schooltile_categoryid'] = 'Kurskategorie';
+$string['schooltile_cohort'] = 'Sichtbar für globale Gruppe';
+$string['schooltile_cohort_all'] = 'Alle sehen diese Kachel';
+$string['schooltile_cohort_help'] = 'Nur Mitglieder dieser globalen Gruppe sehen die Kachel auf der Startseite. Personen mit Berechtigung zur Verwaltung der Schul-Kacheln sehen unabhängig davon immer alle Kacheln (zur Kontrolle).';
+$string['schooltile_color'] = 'Farbe';
+$string['schooltile_color_help'] = 'Hintergrundfarbe der Kachel.';
+$string['schooltile_delete'] = 'Löschen';
+$string['schooltile_delete_confirm'] = 'Diese Kachel wirklich löschen?';
+$string['schooltile_deleted'] = 'Die Kachel wurde gelöscht.';
+$string['schooltile_edit'] = 'Bearbeiten';
+$string['schooltile_editheader'] = 'Kachel bearbeiten';
+$string['schooltile_icon'] = 'Symbol (Emoji)';
+$string['schooltile_icon_help'] = 'Wird angezeigt, solange kein eigenes Bild hochgeladen ist.';
+$string['schooltile_image'] = 'Eigenes Bild (optional)';
+$string['schooltile_image_help'] = 'Ersetzt das Symbol/Emoji, falls hochgeladen.';
+$string['schooltile_managelink'] = 'Schul-Kacheln bearbeiten';
+$string['schooltile_name'] = 'Name der Kachel';
+$string['schooltile_name_help'] = 'Wird auf der Kachel selbst angezeigt, z. B. "Bibliothek" oder "Klasse 3a".';
+$string['schooltile_save'] = 'Kachel speichern';
+$string['schooltile_saved'] = 'Die Kachel wurde gespeichert.';
+$string['schooltile_targetheader'] = 'Ziel der Kachel';
+$string['schooltile_targettype'] = 'Art des Ziels';
+$string['schooltile_targettype_category'] = 'Kurskategorie';
+$string['schooltile_targettype_help'] = 'Legt fest, wohin die Kachel führt: entweder direkt zu einer Kurskategorie, oder zu einer frei wählbaren Adresse.';
+$string['schooltile_targettype_url'] = 'Eigene Adresse';
+$string['schooltile_textcolor'] = 'Textfarbe';
+$string['schooltile_textcolor_help'] = 'Farbe des Textes auf der Kachel.';
+$string['schooltile_url'] = 'Adresse (URL)';
+$string['schooltile_url_help'] = 'Nur wenn oben "Eigene Adresse" gewählt ist. Kann eine vollständige Internetadresse oder ein Moodle-interner Pfad sein (z. B. /course/index.php).';
+$string['schooltiles_disable'] = 'Kacheln ausblenden';
+$string['schooltiles_enable'] = 'Kacheln anzeigen';
+$string['schooltiles_maxreached'] = 'Die maximale Anzahl von 8 Kacheln ist erreicht.';
+$string['schooltiles_none'] = 'Es sind noch keine Kacheln angelegt.';
+$string['schooltiles_status_disabled'] = 'Aktuell ausgeblendet';
+$string['schooltiles_status_enabled'] = 'Aktuell sichtbar';
+$string['schooltilesintro'] = 'Bis zu 8 Kacheln, die auf der Startseite unterhalb der üblichen Inhalte angezeigt werden - z. B. als Schnellzugriff auf Kurskategorien oder externe Adressen.';
+$string['securityheader'] = 'Sicherheit';
+$string['securityintro'] = 'Wichtige Sicherheits- und Datenschutz-Einstellungen für Ihre Website an einem Ort.';
+$string['securitysaved'] = 'Die Sicherheits- und Datenschutz-Einstellungen wurden gespeichert.';
+$string['selectall_easyadmin'] = 'Alle auswählen/abwählen';
+$string['sitepolicy_easyadmin'] = 'Link zur Datenschutzerklärung';
+$string['sitepolicy_easyadmin_help'] = 'Adresse (URL) Ihrer Datenschutzerklärung. Nutzer/innen müssen dieser bei der ersten Anmeldung zustimmen, falls hier eine Adresse hinterlegt ist. Hinweis: Dies ist eine einfache Verlinkung. Für vollständige Dokumente mit Versionierung und Zustimmungspflicht nutzen Sie bitte die Moodle-Richtlinienverwaltung (Button oben).';
+$string['sitepolicyhandler_usetool'] = 'Erweiterte Richtlinienverwaltung aktivieren';
+$string['sitepolicyhandler_usetool_help'] = 'Muss aktiviert sein, damit der Button "Zur Moodle-Richtlinienverwaltung" unten funktioniert - sonst erscheint dort ein "Bereichsfehler". Solange dieses Häkchen nicht gesetzt ist, verwendet Moodle stattdessen den einfachen Link im Feld "Link zur Datenschutzerklärung" weiter unten.';
+$string['subtile_archive_desc'] = 'Schuljahreswechsel';
+$string['subtile_backup_desc'] = 'Zum Herunterladen';
+$string['subtile_categories_desc'] = 'Einzeln oder als Liste';
+$string['subtile_cohorts_desc'] = 'Einzeln oder als Liste';
+$string['subtile_createcourses_desc'] = 'Einzeln oder als Liste';
+$string['subtile_createusers_desc'] = 'Einzeln oder als Liste';
+$string['subtile_delete_desc'] = 'Endgültig entfernen';
+$string['subtile_move_desc'] = 'In andere Kategorie';
+$string['summary_blockhint'] = 'Wichtig: Dieser Text wird nur sichtbar, wenn der Block "Kursbeschreibung" auf der Startseite eingeblendet ist. Mit dem Häkchen unten sorgen wir automatisch dafür.';
+$string['summary_showblock'] = 'Block "Kursbeschreibung" automatisch auf der Startseite anzeigen';
+$string['summary_showblock_help'] = 'Aktiviert den Block "Kursbeschreibung" (falls nötig) und platziert ihn auf der Startseite, damit die oben eingegebenen Informationen zur Website für Besucher/innen sichtbar werden. Falls bereits ein solcher Block vorhanden ist, wird kein zweiter hinzugefügt. Hinweis: Position und Reihenfolge der Blöcke lassen sich anschließend weiterhin ganz normal über den Bearbeiten-Modus der Startseite anpassen.';
+$string['task_cleanup_course_backups'] = 'Alte Kurs-Sicherungen löschen (Kurse-Kachel)';
+$string['teacheridentifier_easyadmin'] = 'Lehrkraft als Trainer/in einschreiben';
+$string['teacheridentifier_easyadmin_help'] = 'Anmeldename oder E-Mail-Adresse einer bestehenden Person. Wird als "Trainer/in" (Lehrkraft-Rolle) in den Kurs eingeschrieben. Leer lassen, um niemanden einzuschreiben.';
+$string['textcolor'] = 'Textfarbe';
+$string['textsize'] = 'Textgröße';
+$string['textsize_large'] = 'Groß';
+$string['textsize_normal'] = 'Standard';
+$string['textsize_small'] = 'Klein';
+$string['textsize_xlarge'] = 'Sehr groß';
+$string['tile_communication_desc'] = 'Mitteilungssystem ein-/ausschalten (E-Mail folgt später)';
+$string['tile_communication_title'] = 'Kommunikation';
+$string['tile_courses_desc'] = 'Kurse anlegen, verwalten und archivieren';
+$string['tile_courses_title'] = 'Kurse';
+$string['tile_design_desc'] = 'Logo, Farben und Erscheinungsbild anpassen';
+$string['tile_design_title'] = 'Design';
+$string['tile_maintenance_desc'] = 'Debug-Modus, Caches leeren, einfache Zugriffszahlen';
+$string['tile_maintenance_title'] = 'Wartung & Berichte';
+$string['tile_news_desc'] = 'Name, Kurzbezeichnung, Beschreibung und Anzeige der Startseite';
+$string['tile_news_title'] = 'Startseite';
+$string['tile_privacy_desc'] = 'Wichtige Sicherheits- und Datenschutz-Einstellungen prüfen und anpassen';
+$string['tile_privacy_title'] = 'Sicherheit und Datenschutz';
+$string['tile_schooltiles_desc'] = 'Bis zu 8 Kacheln für die Startseite einrichten';
+$string['tile_schooltiles_title'] = 'Schul-Kacheln';
+$string['tile_users_desc'] = 'Lehrkräfte, Schüler*innen und Gruppen verwalten';
+$string['tile_users_title'] = 'Nutzer & Gruppen';
+$string['usercount_easyadmin'] = 'Nutzer/innen insgesamt: {$a}';
+$string['usercreated_easyadmin'] = 'Das Nutzerkonto für {$a} wurde angelegt.';
+$string['username_easyadmin'] = 'Anmeldename';
+$string['username_easyadmin_help'] = 'Nur Kleinbuchstaben, Ziffern sowie die Zeichen . - _ @ sind erlaubt.';
+$string['usersdashboardintro'] = 'Wählen Sie einen Bereich aus.';
+$string['viewfulllog_easyadmin'] = 'Alle Logdaten ansehen';
+$string['viewfulllog_easyadmin_notice'] = 'Hinweis: Für die vollständige Log-Ansicht wird zusätzlich zu den Rechten dieses Dashboards die Berechtigung "report/log:view" benötigt.';
+$string['welcomeintro'] = 'Hier können Sie die wichtigsten Einstellungen Ihres Moodles bearbeiten – ganz ohne Vorkenntnisse. Wählen Sie einfach einen Bereich aus.';
+$string['welcomepopup_autoclose'] = 'Automatisch schließen nach (Sekunden)';
+$string['welcomepopup_autoclose_help'] = 'Nach dieser Zeit schließt sich das Popup von selbst, falls niemand reagiert. 0 = nie automatisch schließen (nur per Klick auf X, Hintergrund oder Anmelden-Button).';
+$string['welcomepopup_buttontext'] = 'Button-Text';
+$string['welcomepopup_buttontext_default'] = 'Jetzt anmelden';
+$string['welcomepopup_buttonurl'] = 'Button-Ziel';
+$string['welcomepopup_buttonurl_help'] = 'Wohin der Button führen soll. Standard: die Anmeldeseite (/login/index.php). Es sind nur Adressen auf dieser Website erlaubt.';
+$string['welcomepopup_enabled'] = 'Begrüßungs-Popup anzeigen';
+$string['welcomepopup_enabled_help'] = 'Zeigt beim Seitenaufruf ein Willkommensfenster für noch nicht angemeldete Besucher/innen an, z. B. mit Hinweis auf eine Testversion und einem Anmelden-Button. Erscheint nicht auf der Anmeldeseite selbst.';
+$string['welcomepopup_image'] = 'Bild/Icon';
+$string['welcomepopup_image_help'] = 'Optionales Bild im Popup, z. B. ein Schul-Logo oder Maskottchen. Wird kein Bild hochgeladen, erscheint stattdessen ein Schul-Symbol.';
+$string['welcomepopup_message'] = 'Nachricht';
+$string['welcomepopup_message_default'] = 'Dies ist eine Testversion der Grundschul-Lernplattform.';
+$string['welcomepopup_title'] = 'Titel';
+$string['welcomepopup_title_default'] = 'Willkommen!';
+$string['welcomepopupheader'] = 'Begrüßungs-Popup';
+$string['welcometitle'] = 'Willkommen in der Schul-Administration';

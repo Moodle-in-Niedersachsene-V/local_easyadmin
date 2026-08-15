@@ -1,0 +1,221 @@
+/* This file is part of Moodle - http://moodle.org/
+ *
+ * Moodle is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Moodle is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Styles for local_easyadmin.
+ *
+ * @package    local_easyadmin
+ * @copyright  2026 Moodle in Niedersachsen e. V.
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+.local-easyadmin-dashboard .ea-welcome h2 {
+    margin-bottom: 0.25rem;
+}
+
+.local-easyadmin-dashboard .ea-tile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.local-easyadmin-dashboard .ea-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 170px;
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+    text-decoration: none;
+    color: #212529;
+    background: #f5f6f8;
+    border: 2px solid transparent;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+.local-easyadmin-dashboard .ea-tile:hover,
+.local-easyadmin-dashboard .ea-tile:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    border-color: currentColor;
+    text-decoration: none;
+    color: #212529;
+}
+
+.local-easyadmin-dashboard .ea-tile-icon {
+    font-size: 2.75rem;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+
+.local-easyadmin-dashboard .ea-tile-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+.local-easyadmin-dashboard .ea-tile-desc {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Dezente farbliche Unterscheidung je Kachel, bewusst hell/kontrastarm gehalten. */
+.local-easyadmin-dashboard .ea-tile-design { background: #fdf1f5; }
+.local-easyadmin-dashboard .ea-tile-users { background: #eef6fb; }
+.local-easyadmin-dashboard .ea-tile-courses { background: #eef9f0; }
+.local-easyadmin-dashboard .ea-tile-news { background: #fff8e6; }
+.local-easyadmin-dashboard .ea-tile-communication { background: #e6f3fb; }
+.local-easyadmin-dashboard .ea-tile-privacy { background: #f1f0fb; }
+.local-easyadmin-dashboard .ea-tile-maintenance { background: #f2f2f2; }
+.local-easyadmin-dashboard .ea-tile-schooltiles { background: #fff1e3; }
+
+.local-easyadmin-dashboard .ea-placeholder {
+    max-width: 600px;
+}
+
+/* Größere Klickflächen und Schrift für Tablet-Nutzung. */
+@media (max-width: 768px) {
+    .local-easyadmin-dashboard .ea-tile {
+        min-height: 150px;
+        padding: 1.25rem 0.75rem;
+    }
+}
+
+/* Begrüßungs-Popup (lib.php / hook_callbacks::before_standard_top_of_body_html_generation). */
+.local-easyadmin-welcome-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20, 20, 30, 0.55);
+    padding: 1rem;
+}
+
+.local-easyadmin-welcome-overlay[hidden] {
+    display: none;
+}
+
+.local-easyadmin-welcome-modal {
+    position: relative;
+    background: #fff;
+    border-radius: 20px;
+    max-width: 420px;
+    width: 100%;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.local-easyadmin-welcome-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.local-easyadmin-welcome-image {
+    max-width: 120px;
+    max-height: 120px;
+    width: auto;
+    height: auto;
+    margin: 0 auto 1rem;
+    display: block;
+    border-radius: 12px;
+}
+
+.local-easyadmin-welcome-modal h2 {
+    margin-bottom: 0.75rem;
+}
+
+.local-easyadmin-welcome-modal p {
+    color: #444;
+    margin-bottom: 1.5rem;
+}
+
+.local-easyadmin-welcome-btn {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.65rem 2rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.local-easyadmin-welcome-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    line-height: 1;
+    color: #888;
+    cursor: pointer;
+}
+
+.local-easyadmin-welcome-close:hover {
+    color: #222;
+}
+
+/* Schul-Kacheln auf der Startseite. */
+.local-easyadmin-schooltiles {
+    margin: 1.5rem 0;
+}
+
+.local-easyadmin-schooltiles-managelink {
+    text-align: right;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.local-easyadmin-schooltiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.local-easyadmin-schooltile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem 0.75rem;
+    border-radius: 12px;
+    text-decoration: none;
+    min-height: 110px;
+}
+
+.local-easyadmin-schooltile:hover {
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+.local-easyadmin-schooltile-icon {
+    font-size: 2.25rem;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.local-easyadmin-schooltile-image {
+    max-width: 48px;
+    max-height: 48px;
+    margin-bottom: 8px;
+}
+
+.local-easyadmin-schooltile-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-align: center;
+}
