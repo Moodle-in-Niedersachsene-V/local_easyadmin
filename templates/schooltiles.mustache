@@ -25,6 +25,22 @@
     * tiles - Liste der anzuzeigenden Kacheln (name, icon, imageurl, color, textcolor, url)
     * canmanage - bool, ob ein Bearbeiten-Link angezeigt werden soll
     * manageurl - Adresse der Verwaltungsseite
+
+    Example context (json):
+    {
+        "canmanage": true,
+        "manageurl": "https://example.org/local/easyadmin/schooltiles.php",
+        "tiles": [
+            {
+                "name": "Bibliothek",
+                "icon": "📚",
+                "imageurl": null,
+                "color": "#4A90E2",
+                "textcolor": "#FFFFFF",
+                "url": "https://example.org/course/index.php?categoryid=1"
+            }
+        ]
+    }
 }}
 <div class="local-easyadmin-schooltiles">
     {{#canmanage}}
