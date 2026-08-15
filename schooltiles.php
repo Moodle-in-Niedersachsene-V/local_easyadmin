@@ -27,6 +27,7 @@
 
 require(__DIR__ . '/../../config.php');
 require_once($CFG->libdir . '/formslib.php');
+require_once(__DIR__ . '/lib.php');
 
 require_login();
 
@@ -109,6 +110,19 @@ if ($action === 'edit' || $action === 'add') {
         redirect($listurl);
     }
 
+    // Der Aufruf $PAGE->set_context() muss VOR der Erstellung des
+    // moodleform stehen, da MoodleQuickForm beim Konstruieren bereits auf
+    // $PAGE->context zugreift (sonst "Coding problem: $PAGE->context was
+    // not set").
+    $PAGE->set_url(new moodle_url('/local/easyadmin/schooltiles.php', ['action' => $action, 'tile' => $tilenumber]));
+    $PAGE->set_context($context);
+    $PAGE->set_pagelayout('report');
+    $PAGE->set_title(get_string('tile_schooltiles_title', 'local_easyadmin'));
+    $PAGE->set_heading(get_string('tile_schooltiles_title', 'local_easyadmin'));
+    $PAGE->navbar->add(get_string('dashboardtitle', 'local_easyadmin'), $dashboardurl);
+    $PAGE->navbar->add(get_string('tile_schooltiles_title', 'local_easyadmin'), $listurl);
+    $PAGE->navbar->add(get_string('schooltile_editheader', 'local_easyadmin'));
+
     $mform = new \local_easyadmin\form\schooltile_form(
         new moodle_url('/local/easyadmin/schooltiles.php', ['action' => $action, 'tile' => $tilenumber])
     );
@@ -170,15 +184,6 @@ if ($action === 'edit' || $action === 'add') {
         $currentdata->image = $draftitemid;
         $mform->set_data($currentdata);
     }
-
-    $PAGE->set_url(new moodle_url('/local/easyadmin/schooltiles.php', ['action' => $action, 'tile' => $tilenumber]));
-    $PAGE->set_context($context);
-    $PAGE->set_pagelayout('report');
-    $PAGE->set_title(get_string('tile_schooltiles_title', 'local_easyadmin'));
-    $PAGE->set_heading(get_string('tile_schooltiles_title', 'local_easyadmin'));
-    $PAGE->navbar->add(get_string('dashboardtitle', 'local_easyadmin'), $dashboardurl);
-    $PAGE->navbar->add(get_string('tile_schooltiles_title', 'local_easyadmin'), $listurl);
-    $PAGE->navbar->add(get_string('schooltile_editheader', 'local_easyadmin'));
 
     echo $OUTPUT->header();
     echo $OUTPUT->heading(get_string('schooltile_editheader', 'local_easyadmin'));

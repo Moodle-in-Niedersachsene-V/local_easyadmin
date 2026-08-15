@@ -299,3 +299,170 @@ function local_easyadmin_enrol_teacher_and_cohort(int $courseid, string $teacher
         }
     }
 }
+
+/**
+ * Liefert das HTML-Markup für einen eigenen Farbverlauf-Farbwähler zu einem
+ * bestehenden Text-Eingabefeld (2D-Fläche für Sättigung/Helligkeit plus
+ * Farbton-Leiste), analog zu Moodles admin_setting_configcolourpicker.
+ *
+ * Bewusst als eigenes, leichtgewichtiges Widget umgesetzt statt auf Moodles
+ * internen, YUI-basierten Farbwähler-Mechanismus (M.util.init_colour_picker)
+ * zurückzugreifen: YUI gilt in aktuellen Moodle-Versionen als veraltet und
+ * eine formslib-eigene Entsprechung existiert laut offiziellem
+ * Moodle-Tracker-Eintrag (MDL-59586) bis heute nicht.
+ *
+ * @param string $inputid Die HTML-ID des zugehörigen Text-Eingabefelds
+ *                         (bei moodleform-Feldern standardmäßig "id_" + Feldname).
+ * @return string
+ */
+function local_easyadmin_colourpicker_markup(string $inputid): string {
+    return \html_writer::div(
+        \html_writer::div('', 'ea-cp-square') .
+        \html_writer::div('', 'ea-cp-hue'),
+        'local-easyadmin-colourpicker',
+        ['data-target' => $inputid]
+    );
+}
+
+/**
+ * Liefert das gemeinsame JavaScript für alle Farbverlauf-Farbwähler auf
+ * einer Seite. Reines Vanilla-JavaScript, keine Abhängigkeit von jQuery,
+ * YUI oder einem AMD-Modul.
+ *
+ * @return string
+ */
+function local_easyadmin_colourpicker_script(): string {
+    return <<<'JS'
+<script>
+(function() {
+    if (window.eaColourPickerInitDone) {
+        return;
+    }
+    window.eaColourPickerInitDone = true;
+
+    function hsvToHex(h, s, v) {
+        var c = v * s;
+        var x = c * (1 - Math.abs((h / 60) % 2 - 1));
+        var m = v - c;
+        var r = 0, g = 0, b = 0;
+        if (h < 60) { r = c; g = x; } else if (h < 120) { r = x; g = c; }
+        else if (h < 180) { g = c; b = x; } else if (h < 240) { g = x; b = c; }
+        else if (h < 300) { r = x; b = c; } else { r = c; b = x; }
+        var toHex = function(n) {
+            var v2 = Math.round((n + m) * 255);
+            return ('0' + v2.toString(16)).slice(-2);
+        };
+        return '#' + toHex(r) + toHex(g) + toHex(b);
+    }
+
+    function hexToHsv(hex) {
+        hex = (hex || '').replace('#', '');
+        if (hex.length !== 6) {
+            hex = '4a90e2';
+        }
+        var r = parseInt(hex.substr(0, 2), 16) / 255;
+        var g = parseInt(hex.substr(2, 2), 16) / 255;
+        var b = parseInt(hex.substr(4, 2), 16) / 255;
+        var max = Math.max(r, g, b), min = Math.min(r, g, b);
+        var d = max - min;
+        var h = 0;
+        if (d !== 0) {
+            if (max === r) { h = 60 * (((g - b) / d) % 6); }
+            else if (max === g) { h = 60 * ((b - r) / d + 2); }
+            else { h = 60 * ((r - g) / d + 4); }
+        }
+        if (h < 0) { h += 360; }
+        var s = max === 0 ? 0 : d / max;
+        var v = max;
+        return { h: h, s: s, v: v };
+    }
+
+    function initPicker(widget) {
+        var targetId = widget.getAttribute('data-target');
+        var input = document.getElementById(targetId);
+        if (!input) {
+            return;
+        }
+        var square = widget.querySelector('.ea-cp-square');
+        var hue = widget.querySelector('.ea-cp-hue');
+
+        var squareCursor = document.createElement('div');
+        squareCursor.className = 'ea-cp-cursor';
+        square.appendChild(squareCursor);
+
+        var hueCursor = document.createElement('div');
+        hueCursor.className = 'ea-cp-hue-cursor';
+        hue.appendChild(hueCursor);
+
+        var state = hexToHsv(input.value);
+
+        function render() {
+            square.style.backgroundColor = hsvToHex(state.h, 1, 1);
+            squareCursor.style.left = (state.s * 100) + '%';
+            squareCursor.style.top = ((1 - state.v) * 100) + '%';
+            hueCursor.style.top = (state.h / 360 * 100) + '%';
+        }
+
+        function updateFromState() {
+            var hex = hsvToHex(state.h, state.s, state.v);
+            input.value = hex;
+            input.dispatchEvent(new Event('change'));
+            render();
+        }
+
+        function pointerToRatio(evt, el) {
+            var rect = el.getBoundingClientRect();
+            var clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+            var clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+            var x = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+            var y = Math.min(Math.max((clientY - rect.top) / rect.height, 0), 1);
+            return { x: x, y: y };
+        }
+
+        function bindDrag(el, handler) {
+            var dragging = false;
+            var move = function(evt) {
+                if (!dragging) {
+                    return;
+                }
+                handler(pointerToRatio(evt, el));
+                evt.preventDefault();
+            };
+            el.addEventListener('mousedown', function(evt) {
+                dragging = true;
+                move(evt);
+            });
+            el.addEventListener('touchstart', function(evt) {
+                dragging = true;
+                move(evt);
+            });
+            document.addEventListener('mousemove', move);
+            document.addEventListener('touchmove', move);
+            document.addEventListener('mouseup', function() { dragging = false; });
+            document.addEventListener('touchend', function() { dragging = false; });
+        }
+
+        bindDrag(square, function(ratio) {
+            state.s = ratio.x;
+            state.v = 1 - ratio.y;
+            updateFromState();
+        });
+
+        bindDrag(hue, function(ratio) {
+            state.h = ratio.y * 360;
+            updateFromState();
+        });
+
+        input.addEventListener('input', function() {
+            state = hexToHsv(input.value);
+            render();
+        });
+
+        render();
+    }
+
+    document.querySelectorAll('.local-easyadmin-colourpicker').forEach(initPicker);
+})();
+</script>
+JS;
+}

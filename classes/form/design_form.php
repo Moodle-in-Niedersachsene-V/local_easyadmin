@@ -77,7 +77,8 @@ class design_form extends \moodleform {
         );
         $mform->setType('backgroundcolor', PARAM_TEXT);
         $mform->addHelpButton('backgroundcolor', 'backgroundcolor', 'local_easyadmin');
-        $colorfield->updateAttributes(['type' => 'color']);
+        $colorfield->updateAttributes(['type' => 'text', 'id' => 'id_backgroundcolor']);
+        $mform->addElement('static', 'backgroundcolor_picker', '', local_easyadmin_colourpicker_markup('id_backgroundcolor'));
 
         $textcolorfield = $mform->addElement(
             'text',
@@ -85,7 +86,9 @@ class design_form extends \moodleform {
             get_string('textcolor', 'local_easyadmin')
         );
         $mform->setType('textcolor', PARAM_TEXT);
-        $textcolorfield->updateAttributes(['type' => 'color']);
+        $textcolorfield->updateAttributes(['type' => 'text', 'id' => 'id_textcolor']);
+        $mform->addElement('static', 'textcolor_picker', '', local_easyadmin_colourpicker_markup('id_textcolor'));
+        $mform->addElement('static', 'colourpicker_script', '', local_easyadmin_colourpicker_script());
 
         $sizes = [
             'small'  => get_string('textsize_small', 'local_easyadmin'),

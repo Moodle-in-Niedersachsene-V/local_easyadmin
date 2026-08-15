@@ -74,14 +74,17 @@ class schooltile_form extends \moodleform {
         $colorfield = $mform->addElement('text', 'color', get_string('schooltile_color', 'local_easyadmin'));
         $mform->setType('color', PARAM_TEXT);
         $mform->setDefault('color', '#4A90E2');
-        $colorfield->updateAttributes(['type' => 'color']);
+        $colorfield->updateAttributes(['type' => 'text', 'id' => 'id_color']);
         $mform->addHelpButton('color', 'schooltile_color', 'local_easyadmin');
+        $mform->addElement('static', 'color_picker', '', local_easyadmin_colourpicker_markup('id_color'));
 
         $textcolorfield = $mform->addElement('text', 'textcolor', get_string('schooltile_textcolor', 'local_easyadmin'));
         $mform->setType('textcolor', PARAM_TEXT);
         $mform->setDefault('textcolor', '#FFFFFF');
-        $textcolorfield->updateAttributes(['type' => 'color']);
+        $textcolorfield->updateAttributes(['type' => 'text', 'id' => 'id_textcolor']);
         $mform->addHelpButton('textcolor', 'schooltile_textcolor', 'local_easyadmin');
+        $mform->addElement('static', 'textcolor_picker', '', local_easyadmin_colourpicker_markup('id_textcolor'));
+        $mform->addElement('static', 'colourpicker_script', '', local_easyadmin_colourpicker_script());
 
         $mform->addElement('header', 'targetheader', get_string('schooltile_targetheader', 'local_easyadmin'));
         $mform->setExpanded('targetheader', true);
