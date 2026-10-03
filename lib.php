@@ -466,3 +466,52 @@ function local_easyadmin_colourpicker_script(): string {
 </script>
 JS;
 }
+
+/**
+ * Minimale Aufbewahrungsfrist in Tagen für die automatische Löschung
+ * inaktiver Nutzerkonten. Verhindert eine versehentliche Fehlkonfiguration
+ * auf einen zu niedrigen, riskanten Wert.
+ */
+define('LOCAL_EASYADMIN_INACTIVEDELETION_MINDAYS', 90);
+
+/**
+ * Ermittelt alle Nutzerkonten, die seit mindestens der angegebenen Anzahl
+ * Tage inaktiv sind und für die automatische/manuelle Löschung infrage
+ * kommen. Website-Administrator/innen, das Gastkonto sowie bereits
+ * gelöschte Konten werden grundsätzlich nie zurückgegeben.
+ *
+ * Als "letzte Aktivität" gilt der jeweils späteste der drei Zeitstempel
+ * lastaccess/firstaccess/timecreated, damit frisch angelegte Konten ohne
+ * bisherige Anmeldung (lastaccess = 0) nicht fälschlich als "seit jeher
+ * inaktiv" erfasst werden.
+ *
+ * @param int $days
+ * @return array Liste von stdClass-Objekten (id, firstname, lastname, username, lastaccess, firstaccess, timecreated).
+ */
+function local_easyadmin_get_inactive_users(int $days): array {
+    global $DB, $CFG;
+
+    // Der jeweils späteste Zeitstempel wird bewusst in PHP statt per
+    // datenbankspezifischer SQL-Funktion ermittelt (GREATEST existiert nicht
+    // einheitlich über alle von Moodle unterstützten Datenbanktreiber hinweg
+    // als portable $DB-Methode).
+    $cutoff = time() - ($days * DAYSECS);
+
+    $allusers = $DB->get_records_select(
+        'user',
+        'deleted = 0 AND id <> :guestid',
+        ['guestid' => $CFG->siteguest],
+        'lastname ASC, firstname ASC',
+        'id, firstname, lastname, username, lastaccess, firstaccess, timecreated'
+    );
+
+    $siteadminids = array_filter(array_map('trim', explode(',', $CFG->siteadmins)));
+
+    return array_filter($allusers, static function ($user) use ($siteadminids, $cutoff) {
+        if (in_array((string) $user->id, $siteadminids, true)) {
+            return false;
+        }
+        $lastactivity = max($user->lastaccess, $user->firstaccess, $user->timecreated);
+        return $lastactivity < $cutoff;
+    });
+}

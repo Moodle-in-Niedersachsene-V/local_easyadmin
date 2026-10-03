@@ -16,7 +16,8 @@
 
 /**
  * Nutzer & Gruppen: Mini-Kachel-Übersicht, die zu den Unterseiten
- * "Nutzer anlegen" und "Globale Gruppen" führt - analog zur Kurse-Kachel.
+ * "Nutzer anlegen", "Globale Gruppen" und "Nutzerkonten löschen" führt -
+ * analog zur Kurse-Kachel.
  *
  * @package    local_easyadmin
  * @copyright  2026 Moodle in Niedersachsen e. V.
@@ -54,6 +55,13 @@ $subtiles = [
         'colorclass' => 'ea-tile-communication',
         'title' => get_string('cohortsheader', 'local_easyadmin'),
         'desc' => get_string('subtile_cohorts_desc', 'local_easyadmin'),
+    ],
+    [
+        'url' => new moodle_url('/local/easyadmin/userdelete.php'),
+        'emoji' => '🗑️',
+        'colorclass' => 'ea-tile-maintenance',
+        'title' => get_string('userdeleteheader', 'local_easyadmin'),
+        'desc' => get_string('subtile_userdelete_desc', 'local_easyadmin'),
     ],
 ];
 
