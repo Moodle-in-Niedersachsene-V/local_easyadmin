@@ -210,12 +210,14 @@ if (!empty($downloadlinks)) {
     echo html_writer::div(get_string('backup_done_intro', 'local_easyadmin'), 'alert alert-success');
 
     if ($zipdownloadurl) {
-        $zipdownloadlink = html_writer::link(
-            $zipdownloadurl,
-            get_string('backup_downloadall_button', 'local_easyadmin'),
-            ['class' => 'btn btn-primary']
+        echo html_writer::div(
+            html_writer::link(
+                $zipdownloadurl,
+                get_string('backup_downloadall_button', 'local_easyadmin'),
+                ['class' => 'btn btn-primary']
+            ),
+            'mb-3'
         );
-        echo html_writer::div($zipdownloadlink, 'mb-3');
     }
 
     echo html_writer::start_tag('ul');

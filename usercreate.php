@@ -203,7 +203,7 @@ echo html_writer::tag('h4', get_string('bulkuserheader', 'local_easyadmin'), ['c
 echo html_writer::tag('p', get_string('bulkuserintro', 'local_easyadmin'), ['class' => 'text-muted']);
 
 if (!empty($createdusers)) {
-    echo html_writer::div($bulkusersummary, 'alert alert-success');
+    echo $OUTPUT->notification($bulkusersummary, \core\output\notification::NOTIFY_SUCCESS);
     echo html_writer::div(get_string('bulkuser_passwordnotice', 'local_easyadmin'), 'alert alert-warning');
 
     $table = new html_table();

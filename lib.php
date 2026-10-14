@@ -515,3 +515,29 @@ function local_easyadmin_get_inactive_users(int $days): array {
         return $lastactivity < $cutoff;
     });
 }
+
+/** Erlaubte Kachelgrößen der Schul-Kacheln. */
+define('LOCAL_EASYADMIN_SCHOOLTILES_SIZES', ['small', 'medium', 'large']);
+
+/** Erlaubte Ausrichtungen der Schul-Kacheln. */
+define('LOCAL_EASYADMIN_SCHOOLTILES_ALIGNS', ['left', 'center', 'right']);
+
+/**
+ * Liefert die gespeicherte Kachelgröße (nur Werte aus der Positivliste).
+ *
+ * @return string small, medium oder large
+ */
+function local_easyadmin_get_schooltiles_size(): string {
+    $value = (string) get_config('local_easyadmin', 'schooltiles_size');
+    return in_array($value, LOCAL_EASYADMIN_SCHOOLTILES_SIZES, true) ? $value : 'medium';
+}
+
+/**
+ * Liefert die gespeicherte Ausrichtung (nur Werte aus der Positivliste).
+ *
+ * @return string left, center oder right
+ */
+function local_easyadmin_get_schooltiles_align(): string {
+    $value = (string) get_config('local_easyadmin', 'schooltiles_align');
+    return in_array($value, LOCAL_EASYADMIN_SCHOOLTILES_ALIGNS, true) ? $value : 'left';
+}

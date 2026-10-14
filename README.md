@@ -18,7 +18,7 @@ Website-Administration, nicht als Ersatz dafür.
 | **Kommunikation** | Mitteilungssystem, Anbindung an lokale Mail-Plugins (optional) |
 | **Sicherheit und Datenschutz** | Passwortrichtlinie, Anmeldesperre, Datenschutzerklärung |
 | **Wartung & Berichte** | Debug-Modus, Caches leeren, Zugriffszahlen, Log-Aufbewahrung |
-| **Schul-Kacheln** | Bis zu 8 konfigurierbare Startseiten-Kacheln (Kategorie/Adresse, Bild/Emoji, Farben, Sichtbarkeit per globaler Gruppe) |
+| **Schul-Kacheln** | Bis zu 8 konfigurierbare Startseiten-Kacheln (Kategorie/Adresse, Bild/Emoji, Farben, Sichtbarkeit per globaler Gruppe, einstellbare Kachelgröße und Ausrichtung) |
 
 ## Voraussetzungen
 

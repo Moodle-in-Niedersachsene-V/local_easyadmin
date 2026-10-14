@@ -202,6 +202,29 @@ $PAGE->set_heading(get_string('tile_schooltiles_title', 'local_easyadmin'));
 $PAGE->navbar->add(get_string('dashboardtitle', 'local_easyadmin'), $dashboardurl);
 $PAGE->navbar->add(get_string('tile_schooltiles_title', 'local_easyadmin'));
 
+$settingsform = new \local_easyadmin\form\schooltilesettings_form($listurl);
+$settingsform->set_data([
+    'tilesize' => local_easyadmin_get_schooltiles_size(),
+    'tilealign' => local_easyadmin_get_schooltiles_align(),
+]);
+if ($settingsdata = $settingsform->get_data()) {
+    require_sesskey();
+    $newsize = in_array($settingsdata->tilesize, LOCAL_EASYADMIN_SCHOOLTILES_SIZES, true)
+        ? $settingsdata->tilesize
+        : 'medium';
+    $newalign = in_array($settingsdata->tilealign, LOCAL_EASYADMIN_SCHOOLTILES_ALIGNS, true)
+        ? $settingsdata->tilealign
+        : 'left';
+    set_config('schooltiles_size', $newsize, 'local_easyadmin');
+    set_config('schooltiles_align', $newalign, 'local_easyadmin');
+    redirect(
+        $listurl,
+        get_string('schooltiles_settingssaved', 'local_easyadmin'),
+        null,
+        \core\output\notification::NOTIFY_SUCCESS
+    );
+}
+
 $enabled = (bool) get_config('local_easyadmin', 'schooltiles_enabled');
 $fs = get_file_storage();
 
@@ -210,14 +233,15 @@ echo $OUTPUT->heading(get_string('tile_schooltiles_title', 'local_easyadmin'));
 echo html_writer::tag('p', get_string('schooltilesintro', 'local_easyadmin'), ['class' => 'text-muted']);
 
 $toggleurl = new moodle_url('/local/easyadmin/schooltiles.php', ['action' => 'toggle', 'sesskey' => sesskey()]);
-$togglelabel = $enabled
-    ? get_string('schooltiles_disable', 'local_easyadmin')
-    : get_string('schooltiles_enable', 'local_easyadmin');
 echo html_writer::div(
     ($enabled
         ? html_writer::span(get_string('schooltiles_status_enabled', 'local_easyadmin'), 'badge badge-success mr-2')
         : html_writer::span(get_string('schooltiles_status_disabled', 'local_easyadmin'), 'badge badge-secondary mr-2'))
-    . html_writer::link($toggleurl, $togglelabel, ['class' => 'btn btn-secondary']),
+    . html_writer::link(
+        $toggleurl,
+        get_string($enabled ? 'schooltiles_disable' : 'schooltiles_enable', 'local_easyadmin'),
+        ['class' => 'btn btn-secondary']
+    ),
     'mb-3'
 );
 
@@ -243,19 +267,20 @@ if ($tilecount === 0) {
                 '/',
                 $imagefile->get_filename()
             )->out(false);
-            $visualcontent = html_writer::empty_tag('img', [
-                'src' => $imageurl,
-                'alt' => '',
-                'style' => 'max-width:100%;max-height:100%;',
-            ]);
         } else {
-            $visualcontent = html_writer::tag('span', s($icon), ['style' => 'font-size:2.5rem;']);
+            $imageurl = null;
         }
 
         echo html_writer::start_div('col-md-3 mb-3');
         echo html_writer::start_div('card h-100');
         echo html_writer::div(
-            $visualcontent,
+            $imageurl
+                ? html_writer::empty_tag('img', [
+                    'src' => $imageurl,
+                    'alt' => '',
+                    'style' => 'max-width:100%;max-height:100%;',
+                ])
+                : html_writer::tag('span', s($icon), ['style' => 'font-size:2.5rem;']),
             'd-flex align-items-center justify-content-center',
             ['style' => 'background:' . s($color) . ';height:100px;']
         );
@@ -281,6 +306,8 @@ if ($tilecount === 0) {
     }
     echo html_writer::end_div();
 }
+
+$settingsform->display();
 
 if ($tilecount < $maxtiles) {
     $addurl = new moodle_url('/local/easyadmin/schooltiles.php', ['action' => 'add']);

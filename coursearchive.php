@@ -160,11 +160,10 @@ if ($archivestep === 3 && !empty($selectedcourseids)) {
                 'type' => 'checkbox', 'name' => 'courseids[]', 'value' => $course->id,
                 'id' => $checkboxid, 'checked' => 'checked', 'class' => 'form-check-input',
             ]);
-            $labeltext = format_string($course->fullname)
-                . ($course->visible ? '' : ' ' . get_string('archive_alreadyhidden', 'local_easyadmin'));
             echo html_writer::tag(
                 'label',
-                $labeltext,
+                format_string($course->fullname)
+                    . ($course->visible ? '' : ' ' . get_string('archive_alreadyhidden', 'local_easyadmin')),
                 ['for' => $checkboxid, 'class' => 'form-check-label']
             );
             echo html_writer::end_div();

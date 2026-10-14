@@ -25,11 +25,15 @@
     * tiles - Liste der anzuzeigenden Kacheln (name, icon, imageurl, color, textcolor, url)
     * canmanage - bool, ob ein Bearbeiten-Link angezeigt werden soll
     * manageurl - Adresse der Verwaltungsseite
+    * sizeclass - CSS-Klasse für die Kachelgröße
+    * alignclass - CSS-Klasse für die Ausrichtung
 
     Example context (json):
     {
         "canmanage": true,
         "manageurl": "https://example.org/local/easyadmin/schooltiles.php",
+        "sizeclass": "local-easyadmin-size-medium",
+        "alignclass": "local-easyadmin-align-center",
         "tiles": [
             {
                 "name": "Bibliothek",
@@ -48,7 +52,7 @@
             <a href="{{manageurl}}">{{#str}}schooltile_managelink, local_easyadmin{{/str}}</a>
         </div>
     {{/canmanage}}
-    <div class="local-easyadmin-schooltiles-grid">
+    <div class="local-easyadmin-schooltiles-grid {{sizeclass}} {{alignclass}}">
         {{#tiles}}
             <a class="local-easyadmin-schooltile" href="{{url}}"
                style="background-color:{{color}};color:{{textcolor}};">

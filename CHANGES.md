@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0
+
+- **Schul-Kacheln**: Kachelgröße (klein, mittel, groß) und Ausrichtung
+  (links, mittig, rechts) einstellbar, jeweils mit Kontexthilfe
+- Behoben: Die automatische Löschung inaktiver Nutzerkonten (geplante
+  Aufgabe) lädt jetzt die Plugin-Bibliothek lib.php selbst nach
+
 ## 1.0.0
 
 Erste Marktplatz-Einreichung. Zusammenfassung der Entwicklung bis zu diesem

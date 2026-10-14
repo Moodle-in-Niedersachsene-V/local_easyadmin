@@ -61,6 +61,7 @@ class cleanup_inactive_users extends \core\task\scheduled_task {
         }
 
         require_once($CFG->dirroot . '/user/lib.php');
+        require_once($CFG->dirroot . '/local/easyadmin/lib.php');
 
         $candidates = local_easyadmin_get_inactive_users($days);
         $deletedcount = 0;

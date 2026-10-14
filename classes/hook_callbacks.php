@@ -377,7 +377,7 @@ class hook_callbacks {
      * @return void
      */
     public static function render_schooltiles(\core\hook\output\before_footer_html_generation $hook): void {
-        global $PAGE, $DB, $USER, $OUTPUT;
+        global $CFG, $PAGE, $DB, $USER, $OUTPUT;
 
         if ($PAGE->pagetype !== 'site-index') {
             return;
@@ -386,6 +386,8 @@ class hook_callbacks {
         if (empty(get_config('local_easyadmin', 'schooltiles_enabled'))) {
             return;
         }
+
+        require_once($CFG->dirroot . '/local/easyadmin/lib.php');
 
         $context = context_system::instance();
         $tilecount = (int) (get_config('local_easyadmin', 'schooltiles_count') ?: 0);
@@ -460,6 +462,8 @@ class hook_callbacks {
             'tiles' => $tiles,
             'canmanage' => $canmanage,
             'manageurl' => (new moodle_url('/local/easyadmin/schooltiles.php'))->out(false),
+            'sizeclass' => 'local-easyadmin-size-' . local_easyadmin_get_schooltiles_size(),
+            'alignclass' => 'local-easyadmin-align-' . local_easyadmin_get_schooltiles_align(),
         ];
 
         $html = $OUTPUT->render_from_template('local_easyadmin/schooltiles', $templatecontext);
