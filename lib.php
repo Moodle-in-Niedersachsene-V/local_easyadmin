@@ -517,7 +517,7 @@ function local_easyadmin_get_inactive_users(int $days): array {
 }
 
 /** Erlaubte Kachelgrößen der Schul-Kacheln. */
-define('LOCAL_EASYADMIN_SCHOOLTILES_SIZES', ['small', 'medium', 'large']);
+define('LOCAL_EASYADMIN_SCHOOLTILES_SIZES', ['small', 'medium', 'large', 'xlarge']);
 
 /** Erlaubte Ausrichtungen der Schul-Kacheln. */
 define('LOCAL_EASYADMIN_SCHOOLTILES_ALIGNS', ['left', 'center', 'right']);

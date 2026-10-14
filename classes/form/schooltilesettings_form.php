@@ -42,6 +42,7 @@ class schooltilesettings_form extends \moodleform {
             'small' => get_string('schooltiles_size_small', 'local_easyadmin'),
             'medium' => get_string('schooltiles_size_medium', 'local_easyadmin'),
             'large' => get_string('schooltiles_size_large', 'local_easyadmin'),
+            'xlarge' => get_string('schooltiles_size_xlarge', 'local_easyadmin'),
         ];
         $mform->addElement('select', 'tilesize', get_string('schooltiles_size', 'local_easyadmin'), $sizeoptions);
         $mform->setType('tilesize', PARAM_ALPHA);

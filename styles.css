@@ -192,7 +192,45 @@
 }
 
 .local-easyadmin-schooltiles-grid.local-easyadmin-size-large {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 200px));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 220px));
+}
+
+.local-easyadmin-schooltiles-grid.local-easyadmin-size-xlarge {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 320px));
+}
+
+.local-easyadmin-size-large .local-easyadmin-schooltile {
+    min-height: 150px;
+}
+
+.local-easyadmin-size-large .local-easyadmin-schooltile-icon {
+    font-size: 3rem;
+}
+
+.local-easyadmin-size-large .local-easyadmin-schooltile-image {
+    max-width: 72px;
+    max-height: 72px;
+}
+
+.local-easyadmin-size-large .local-easyadmin-schooltile-name {
+    font-size: 1.05rem;
+}
+
+.local-easyadmin-size-xlarge .local-easyadmin-schooltile {
+    min-height: 190px;
+}
+
+.local-easyadmin-size-xlarge .local-easyadmin-schooltile-icon {
+    font-size: 4rem;
+}
+
+.local-easyadmin-size-xlarge .local-easyadmin-schooltile-image {
+    max-width: 96px;
+    max-height: 96px;
+}
+
+.local-easyadmin-size-xlarge .local-easyadmin-schooltile-name {
+    font-size: 1.2rem;
 }
 
 .local-easyadmin-schooltiles-grid.local-easyadmin-align-center {
