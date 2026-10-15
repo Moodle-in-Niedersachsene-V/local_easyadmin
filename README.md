@@ -13,11 +13,12 @@ Website-Administration, nicht als Ersatz dafür.
 | --- | --- |
 | **Design** | Logo, Hintergrundbild/-farbe, Textfarbe/-größe, Begrüßungs-Popup, Anmeldeseiten-Bild |
 | **Startseite** | Name, Kurzbezeichnung, Beschreibung, Anzeigeoptionen, Kursbeschreibung-Block |
-| **Nutzer & Gruppen** | Nutzerkonten anlegen (einzeln/mehrere), globale Gruppen (Kohorten) |
+| **Nutzer & Globale Gruppen** | Nutzerkonten anlegen (einzeln/mehrere), globale Gruppen (Kohorten) |
 | **Kurse** | Kategorien, Kurse anlegen/verschieben/archivieren/sichern/löschen |
 | **Kommunikation** | Mitteilungssystem, Anbindung an lokale Mail-Plugins (optional) |
 | **Sicherheit und Datenschutz** | Passwortrichtlinie, Anmeldesperre, Datenschutzerklärung |
 | **Wartung & Berichte** | Debug-Modus, Caches leeren, Zugriffszahlen, Log-Aufbewahrung |
+| **Blöcke** | Zusätzliche Block-Bereiche im Inhaltsbereich oben/unten der Startseite und der Kurs-Hauptseite |
 | **Schul-Kacheln** | Bis zu 8 konfigurierbare Startseiten-Kacheln (Kategorie/Adresse, Bild/Emoji, Farben, Sichtbarkeit per globaler Gruppe, einstellbare Kachelgröße und Ausrichtung) |
 
 ## Voraussetzungen

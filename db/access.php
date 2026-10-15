@@ -108,6 +108,15 @@ $capabilities = [
 
     // Kachel "Schul-Kacheln" sehen und zur Einstellungsseite des Plugins
     // local_schooltiles springen dürfen.
+    'local/easyadmin:manageblocks' => [
+        'riskbitmask' => RISK_CONFIG,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
+            'manager' => CAP_ALLOW,
+        ],
+    ],
+
     'local/easyadmin:manageschooltiles' => [
         'riskbitmask' => RISK_CONFIG,
         'captype' => 'write',

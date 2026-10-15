@@ -41,6 +41,21 @@ $callbacks = [
         'priority' => 500,
     ],
     [
+        'hook' => \core\hook\output\before_http_headers::class,
+        'callback' => [\local_easyadmin\hook_callbacks::class, 'register_block_regions'],
+        'priority' => 600,
+    ],
+    [
+        'hook' => \core\hook\output\before_standard_top_of_body_html_generation::class,
+        'callback' => [\local_easyadmin\hook_callbacks::class, 'render_block_region_top'],
+        'priority' => 400,
+    ],
+    [
+        'hook' => \core\hook\output\before_footer_html_generation::class,
+        'callback' => [\local_easyadmin\hook_callbacks::class, 'render_block_region_bottom'],
+        'priority' => 600,
+    ],
+    [
         'hook' => \core\hook\output\before_footer_html_generation::class,
         'callback' => [\local_easyadmin\hook_callbacks::class, 'render_schooltiles'],
         'priority' => 500,

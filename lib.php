@@ -541,3 +541,6 @@ function local_easyadmin_get_schooltiles_align(): string {
     $value = (string) get_config('local_easyadmin', 'schooltiles_align');
     return in_array($value, LOCAL_EASYADMIN_SCHOOLTILES_ALIGNS, true) ? $value : 'left';
 }
+
+/** Schlüssel der zusätzlichen Block-Bereiche (Seite_Position). */
+define('LOCAL_EASYADMIN_BLOCK_AREAS', ['frontpage_top', 'frontpage_bottom', 'course_top', 'course_bottom']);

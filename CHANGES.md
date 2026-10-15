@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0
+
+- **Neue Kachel „Blöcke"**: zusätzliche Block-Bereiche im Inhaltsbereich
+  oben und unten, einzeln für die Startseite und die Kurs-Hauptseite
+  aktivierbar (jeweils mit Kontexthilfe). Neue Capability
+  local/easyadmin:manageblocks
+- Kachel „Nutzer & Gruppen" heißt jetzt „Nutzer & Globale Gruppen"
+
 ## 1.2.0
 
 - **Schul-Kacheln**: Kachelgröße (klein, mittel, groß) und Ausrichtung

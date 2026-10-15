@@ -81,6 +81,7 @@
 .local-easyadmin-dashboard .ea-tile-privacy { background: #f1f0fb; }
 .local-easyadmin-dashboard .ea-tile-maintenance { background: #f2f2f2; }
 .local-easyadmin-dashboard .ea-tile-schooltiles { background: #fff1e3; }
+.local-easyadmin-dashboard .ea-tile-blocks { background: #eaf4f4; }
 
 .local-easyadmin-dashboard .ea-placeholder {
     max-width: 600px;
@@ -167,6 +168,11 @@
 
 .local-easyadmin-welcome-close:hover {
     color: #222;
+}
+
+/* Zusätzliche Block-Bereiche im Inhaltsbereich. */
+.local-easyadmin-blockregion {
+    margin: 1rem 0;
 }
 
 /* Schul-Kacheln auf der Startseite. */

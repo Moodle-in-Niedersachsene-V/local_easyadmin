@@ -18,7 +18,7 @@ namespace local_easyadmin\task;
 
 /**
  * Löscht automatisch Nutzerkonten, die seit einer einstellbaren Anzahl Tage
- * inaktiv sind - nur, wenn diese Funktion über die Kachel "Nutzer & Gruppen"
+ * inaktiv sind - nur, wenn diese Funktion über die Kachel "Nutzer & Globale Gruppen"
  * > "Nutzerkonten löschen" ausdrücklich aktiviert wurde (Standard: deaktiviert).
  *
  * Website-Administrator/innen und das Gastkonto sind von dieser Löschung

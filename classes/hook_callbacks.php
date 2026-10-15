@@ -469,4 +469,120 @@ class hook_callbacks {
         $html = $OUTPUT->render_from_template('local_easyadmin/schooltiles', $templatecontext);
         $hook->add_html($html);
     }
+
+    /** @var array Aktive zusätzliche Block-Bereiche dieses Seitenaufrufs (Position => Regionsname). */
+    protected static $activeblockregions = [];
+
+    /**
+     * Meldet die zusätzlichen Block-Bereiche (Inhaltsbereich oben/unten) bei
+     * Moodles Block-Verwaltung an, sofern sie für den aktuellen Seitentyp
+     * (Startseite bzw. Kurs-Hauptseite) aktiviert wurden.
+     *
+     * Der Hook läuft zu Beginn von header(), also noch bevor Moodle die
+     * Blöcke lädt - nur dann dürfen zusätzliche Regionen registriert werden.
+     *
+     * @param \core\hook\output\before_http_headers $hook
+     * @return void
+     */
+    public static function register_block_regions(\core\hook\output\before_http_headers $hook): void {
+        global $PAGE;
+
+        self::$activeblockregions = [];
+
+        if (during_initial_install() || !get_capability_info('local/easyadmin:manageblocks')) {
+            return;
+        }
+
+        $pagetype = (string) $PAGE->pagetype;
+        if ($pagetype === 'site-index' && $PAGE->pagelayout === 'frontpage') {
+            $prefix = 'frontpage';
+        } else if (strpos($pagetype, 'course-view-') === 0 && $PAGE->pagelayout === 'course') {
+            $prefix = 'course';
+        } else {
+            return;
+        }
+
+        foreach (['top', 'bottom'] as $position) {
+            if (empty(get_config('local_easyadmin', 'blocks_' . $prefix . '_' . $position))) {
+                continue;
+            }
+            $region = 'easyadmin-' . $position;
+            try {
+                $PAGE->blocks->add_region($region);
+            } catch (\coding_exception $e) {
+                // Blöcke wurden bereits geladen: Bereich kann nicht mehr ergänzt werden.
+                return;
+            }
+            self::$activeblockregions[$position] = $region;
+        }
+    }
+
+    /**
+     * Gibt den Block-Bereich "Inhaltsbereich oben" aus.
+     *
+     * @param \core\hook\output\before_standard_top_of_body_html_generation $hook
+     * @return void
+     */
+    public static function render_block_region_top(
+        \core\hook\output\before_standard_top_of_body_html_generation $hook
+    ): void {
+        if (isset(self::$activeblockregions['top'])) {
+            $hook->add_html(self::block_region_html('top'));
+        }
+    }
+
+    /**
+     * Gibt den Block-Bereich "Inhaltsbereich unten" aus und verschiebt beide
+     * Bereiche per kleinem Skript in den Inhaltsbereich (#region-main).
+     *
+     * Ohne Skript bleiben die Bereiche an ihrer Ausgabestelle (ganz oben
+     * bzw. oberhalb der Fußzeile) und sind weiterhin nutzbar.
+     *
+     * @param \core\hook\output\before_footer_html_generation $hook
+     * @return void
+     */
+    public static function render_block_region_bottom(\core\hook\output\before_footer_html_generation $hook): void {
+        if (empty(self::$activeblockregions)) {
+            return;
+        }
+
+        if (isset(self::$activeblockregions['bottom'])) {
+            $hook->add_html(self::block_region_html('bottom'));
+        }
+
+        $hook->add_html('<script>(function() {'
+            . 'var main = document.getElementById("region-main");'
+            . 'if (!main) { return; }'
+            . 'var top = document.getElementById("local-easyadmin-blocks-top");'
+            . 'if (top) { main.insertBefore(top, main.firstChild); }'
+            . 'var bottom = document.getElementById("local-easyadmin-blocks-bottom");'
+            . 'if (bottom) { main.appendChild(bottom); }'
+            . '})();</script>');
+    }
+
+    /**
+     * Erzeugt das HTML eines zusätzlichen Block-Bereichs.
+     *
+     * Im Bearbeitungsmodus wird zusätzlich die Schaltfläche "Block hinzufügen"
+     * für genau diesen Bereich angezeigt. Ohne Blöcke und außerhalb des
+     * Bearbeitungsmodus wird nichts ausgegeben.
+     *
+     * @param string $position top oder bottom
+     * @return string
+     */
+    protected static function block_region_html(string $position): string {
+        global $PAGE, $OUTPUT;
+
+        $region = self::$activeblockregions[$position];
+        $editing = $PAGE->user_is_editing() && $PAGE->user_can_edit_blocks();
+        if (!$editing && !$PAGE->blocks->region_has_content($region, $OUTPUT)) {
+            return '';
+        }
+
+        return \html_writer::div(
+            ($editing ? $OUTPUT->addblockbutton($region) : '') . $OUTPUT->custom_block_region($region),
+            'local-easyadmin-blockregion local-easyadmin-blockregion-' . $position,
+            ['id' => 'local-easyadmin-blocks-' . $position]
+        );
+    }
 }

@@ -92,6 +92,12 @@ class dashboard implements renderable, templatable {
                 'colorclass' => 'ea-tile-maintenance',
             ],
             [
+                'key' => 'blocks',
+                'capability' => 'local/easyadmin:manageblocks',
+                'emoji' => '🧱',
+                'colorclass' => 'ea-tile-blocks',
+            ],
+            [
                 // Vollständig in easyadmin integriert (ersetzt die frühere
                 // Verlinkung auf das separate Plugin local_schooltiles).
                 'key' => 'schooltiles',
@@ -185,6 +191,8 @@ class dashboard implements renderable, templatable {
                 $url = (new moodle_url('/local/easyadmin/security.php'))->out(false);
             } else if ($tile['key'] === 'maintenance') {
                 $url = (new moodle_url('/local/easyadmin/maintenance.php'))->out(false);
+            } else if ($tile['key'] === 'blocks') {
+                $url = (new moodle_url('/local/easyadmin/blocks.php'))->out(false);
             } else if ($tile['key'] === 'schooltiles') {
                 $url = (new moodle_url('/local/easyadmin/schooltiles.php'))->out(false);
             } else {
