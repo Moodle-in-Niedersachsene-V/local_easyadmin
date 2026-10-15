@@ -155,6 +155,16 @@ if ($mform->is_cancelled()) {
         in_array($interval, LOCAL_EASYADMIN_LOGINPAGE_INTERVALS, true) ? $interval : 10,
         'local_easyadmin'
     );
+    // Das Feld ist ausgeblendet (und wird nicht gesendet), solange der
+    // Vollbild-Hintergrund aus ist - dann den gespeicherten Wert behalten.
+    if (isset($data->loginpage_boxopacity)) {
+        $boxopacity = (int) $data->loginpage_boxopacity;
+        set_config(
+            'loginpage_boxopacity',
+            in_array($boxopacity, LOCAL_EASYADMIN_LOGINPAGE_OPACITIES, true) ? $boxopacity : 100,
+            'local_easyadmin'
+        );
+    }
     $formposition = (string) ($data->loginpage_formposition ?? 'right');
     set_config(
         'loginpage_formposition',
@@ -245,6 +255,8 @@ if ($mform->is_cancelled()) {
     $currentdata->loginpage_fullbackground = (int) !empty(get_config('local_easyadmin', 'loginpage_fullbackground'));
     $savedinterval = get_config('local_easyadmin', 'loginpage_interval');
     $currentdata->loginpage_interval = ($savedinterval === false || $savedinterval === '') ? 10 : (int) $savedinterval;
+    $savedopacity = get_config('local_easyadmin', 'loginpage_boxopacity');
+    $currentdata->loginpage_boxopacity = ($savedopacity === false || $savedopacity === '') ? 100 : (int) $savedopacity;
     $currentdata->loginpage_formposition = get_config('local_easyadmin', 'loginpage_formposition') ?: 'right';
     $currentdata->loginpage_image = $loginimagedraftitemid;
 

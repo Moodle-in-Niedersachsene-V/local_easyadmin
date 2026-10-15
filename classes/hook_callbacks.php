@@ -234,8 +234,16 @@ class hook_callbacks {
             $justify = ['left' => 'flex-start', 'center' => 'center', 'right' => 'flex-end'][$position];
             $rules[] = $body . ' #page-content { justify-content: ' . $justify . '; }';
             $rules[] = $body . ' #page-content #region-main { flex: 0 0 auto; width: min(100%, 640px); }';
-            $rules[] = $body . ' .login-layout-right-content { background-color: #fff; border-radius: 0.5rem; '
-                . 'padding: 2rem; box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25); }';
+            $opacityraw = get_config('local_easyadmin', 'loginpage_boxopacity');
+            $opacity = ($opacityraw === false || $opacityraw === '') ? 100 : (int) $opacityraw;
+            if (!in_array($opacity, LOCAL_EASYADMIN_LOGINPAGE_OPACITIES, true)) {
+                $opacity = 100;
+            }
+            // Standard: deckend weiß, damit Text auf jedem Hintergrundbild lesbar bleibt.
+            $rules[] = $body . ' #page .login-layout-right-content { background-color: rgba(255, 255, 255, '
+                . ($opacity / 100) . ') !important; color: #212529; border-radius: 0.5rem; padding: 2rem; '
+                . 'box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25); '
+                . ($opacity < 100 ? 'backdrop-filter: blur(6px); ' : '') . '}';
         } else {
             // Zweigeteiltes Layout bleibt; Bild(er) ersetzen das Standardbild links.
             if ($baseimage !== '') {

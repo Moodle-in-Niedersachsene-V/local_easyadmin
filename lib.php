@@ -553,3 +553,6 @@ define('LOCAL_EASYADMIN_LOGINPAGE_INTERVALS', [0, 5, 10, 15, 30, 60]);
 
 /** Erlaubte Positionen des Anmeldefensters. */
 define('LOCAL_EASYADMIN_LOGINPAGE_POSITIONS', ['left', 'center', 'right']);
+
+/** Erlaubte Deckkraftwerte (Prozent) des Anmeldefensters bei Vollbild-Hintergrund. */
+define('LOCAL_EASYADMIN_LOGINPAGE_OPACITIES', [100, 90, 75]);

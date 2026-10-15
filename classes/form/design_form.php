@@ -167,6 +167,23 @@ class design_form extends \moodleform {
         $mform->setDefault('loginpage_interval', 10);
         $mform->addHelpButton('loginpage_interval', 'loginpage_interval', 'local_easyadmin');
 
+        $opacityoptions = [];
+        foreach (LOCAL_EASYADMIN_LOGINPAGE_OPACITIES as $percent) {
+            $opacityoptions[$percent] = $percent === 100
+                ? get_string('loginpage_opacity_solid', 'local_easyadmin')
+                : get_string('loginpage_opacity_percent', 'local_easyadmin', $percent);
+        }
+        $mform->addElement(
+            'select',
+            'loginpage_boxopacity',
+            get_string('loginpage_boxopacity', 'local_easyadmin'),
+            $opacityoptions
+        );
+        $mform->setType('loginpage_boxopacity', PARAM_INT);
+        $mform->setDefault('loginpage_boxopacity', 100);
+        $mform->addHelpButton('loginpage_boxopacity', 'loginpage_boxopacity', 'local_easyadmin');
+        $mform->hideIf('loginpage_boxopacity', 'loginpage_fullbackground', 'notchecked');
+
         $mform->addElement(
             'select',
             'loginpage_formposition',
