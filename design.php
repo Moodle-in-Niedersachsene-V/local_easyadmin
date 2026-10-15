@@ -87,7 +87,7 @@ file_prepare_draft_area(
     'local_easyadmin',
     'loginpageimage',
     0,
-    ['subdirs' => 0, 'maxfiles' => 1]
+    ['subdirs' => 0, 'maxfiles' => LOCAL_EASYADMIN_LOGINPAGE_MAXIMAGES]
 );
 
 if ($mform->is_cancelled()) {
@@ -142,9 +142,25 @@ if ($mform->is_cancelled()) {
         'local_easyadmin',
         'loginpageimage',
         0,
-        ['subdirs' => 0, 'maxfiles' => 1]
+        ['subdirs' => 0, 'maxfiles' => LOCAL_EASYADMIN_LOGINPAGE_MAXIMAGES]
     );
-    set_config('loginpage_hidedefaultimage', !empty($data->loginpage_hidedefaultimage) ? 1 : 0, 'local_easyadmin');
+
+    // Darstellung der Anmeldeseite. Alle Werte werden gegen feste Listen
+    // geprüft, damit keine beliebigen Eingaben in das Seiten-CSS gelangen.
+    set_config('loginpage_hidepanel', !empty($data->loginpage_hidepanel) ? 1 : 0, 'local_easyadmin');
+    set_config('loginpage_fullbackground', !empty($data->loginpage_fullbackground) ? 1 : 0, 'local_easyadmin');
+    $interval = (int) ($data->loginpage_interval ?? 10);
+    set_config(
+        'loginpage_interval',
+        in_array($interval, LOCAL_EASYADMIN_LOGINPAGE_INTERVALS, true) ? $interval : 10,
+        'local_easyadmin'
+    );
+    $formposition = (string) ($data->loginpage_formposition ?? 'right');
+    set_config(
+        'loginpage_formposition',
+        in_array($formposition, LOCAL_EASYADMIN_LOGINPAGE_POSITIONS, true) ? $formposition : 'right',
+        'local_easyadmin'
+    );
 
     // Hinweistext der Anmeldeseite: Dieser Wert gehört NICHT dem Plugin, sondern
     // ist die Moodle-Kerneinstellung auth_instructions (config-Tabelle, ohne
@@ -225,7 +241,11 @@ if ($mform->is_cancelled()) {
     $currentdata->logo = $logodraftitemid;
     $currentdata->backgroundimage = $backgrounddraftitemid;
     $currentdata->welcomepopup_image = $popupimagedraftitemid;
-    $currentdata->loginpage_hidedefaultimage = (bool) get_config('local_easyadmin', 'loginpage_hidedefaultimage');
+    $currentdata->loginpage_hidepanel = (int) !empty(get_config('local_easyadmin', 'loginpage_hidepanel'));
+    $currentdata->loginpage_fullbackground = (int) !empty(get_config('local_easyadmin', 'loginpage_fullbackground'));
+    $savedinterval = get_config('local_easyadmin', 'loginpage_interval');
+    $currentdata->loginpage_interval = ($savedinterval === false || $savedinterval === '') ? 10 : (int) $savedinterval;
+    $currentdata->loginpage_formposition = get_config('local_easyadmin', 'loginpage_formposition') ?: 'right';
     $currentdata->loginpage_image = $loginimagedraftitemid;
 
     // Aktuellen Wert der Moodle-Kerneinstellung auth_instructions vorbefüllen.

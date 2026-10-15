@@ -247,16 +247,27 @@ $string['localmail_status_easyadmin'] = 'Internal email system (local_mail). Acc
 $string['localmailheader'] = 'Email';
 $string['lockoutthreshold_easyadmin'] = 'Lock account after this many failed login attempts';
 $string['lockoutthreshold_easyadmin_help'] = 'After this number of failed login attempts, the affected account is temporarily locked to protect it against password guessing.';
-$string['loginpage_hidedefaultimage'] = 'Hide/replace the default login page image';
-$string['loginpage_hidedefaultimage_help'] = "Hides Moodle's default image shown on the login page. If a custom image is also uploaded, it is shown instead. Note: the exact effect may vary slightly between Moodle versions, as the login page is still technically evolving.";
-$string['loginpage_image'] = 'Custom login page image';
-$string['loginpage_image_help'] = 'Replaces the default login page image with a custom one, e.g. a school photo.';
+$string['loginpage_formposition'] = 'Login window position';
+$string['loginpage_formposition_help'] = 'Determines where the login window is placed: left, centre or right. With "Background image across the whole page" all three positions are possible. In the split default layout the image and the login window are side by side; there "Left" puts the login window on the left and the image on the right, "Centre" and "Right" correspond to the default.';
+$string['loginpage_fullbackground'] = 'Background image across the whole page';
+$string['loginpage_fullbackground_help'] = 'Shows the background image across the whole login page instead of only in the left area. The login window then appears as a box on top of the image. Without an uploaded image, a plain light grey background is used.';
+$string['loginpage_hidepanel'] = 'Hide info panel';
+$string['loginpage_hidepanel_help'] = 'Hides the info panel that Moodle shows on the login page since version 5.2 (welcome text and figures about Moodle). Note: the instructions text entered below also appears in this panel and will then not be shown.';
+$string['loginpage_image'] = 'Background images for the login page';
+$string['loginpage_image_help'] = 'Your own images for the login page, e.g. school photos (up to 10 images, max. 3 MB each). With several images a random start image is chosen on every visit and then changed at the set interval. Without images the Moodle default image is kept.';
 $string['loginpage_instructions'] = 'Instructions on the login page';
 $string['loginpage_instructions_help'] = 'This text appears next to the login form in a grey box, for example a short note about who logs in here or whom to contact if there are problems.
 
 It is the same setting as "Instructions" under Site administration → Authentication → Manage authentication. Changes take effect on the real login page immediately.
 
 If the field is left empty, Moodle shows its own default text again.';
+$string['loginpage_interval'] = 'Image change';
+$string['loginpage_interval_help'] = 'Determines after how many seconds the next image is faded in when there are several images. "Do not change" only shows the randomly chosen start image. No change happens if "Reduce motion" is enabled in the operating system.';
+$string['loginpage_interval_off'] = 'Do not change';
+$string['loginpage_interval_seconds'] = 'Every {$a} seconds';
+$string['loginpage_position_center'] = 'Centre';
+$string['loginpage_position_left'] = 'Left';
+$string['loginpage_position_right'] = 'Right';
 $string['loginpageheader'] = 'Login page';
 $string['loglifetime_easyadmin'] = 'Keep log data for';
 $string['loglifetime_easyadmin_help'] = 'Determines how long Moodle keeps log data (who did what and when) before it is automatically deleted. For data protection reasons, this selection deliberately does not offer a "Never delete" option. Values below 30 days are not recommended, as this can make statistics unreliable.';

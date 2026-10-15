@@ -247,16 +247,27 @@ $string['localmail_status_easyadmin'] = 'Internes E-Mail-System (local_mail). De
 $string['localmailheader'] = 'E-Mail';
 $string['lockoutthreshold_easyadmin'] = 'Sperre nach so vielen fehlgeschlagenen Anmeldeversuchen';
 $string['lockoutthreshold_easyadmin_help'] = 'Nach dieser Anzahl fehlgeschlagener Anmeldeversuche wird das betroffene Konto vorübergehend gesperrt, um es vor Erraten des Passworts zu schützen.';
-$string['loginpage_hidedefaultimage'] = 'Standard-Bild auf der Anmeldeseite ausblenden/ersetzen';
-$string['loginpage_hidedefaultimage_help'] = 'Blendet das von Moodle standardmäßig angezeigte Bild auf der Anmeldeseite aus. Wird zusätzlich ein eigenes Bild hochgeladen, wird dieses stattdessen angezeigt. Hinweis: Je nach Moodle-Version kann die genaue Wirkung leicht variieren, da sich die Anmeldeseite technisch weiterentwickelt.';
-$string['loginpage_image'] = 'Eigenes Bild für die Anmeldeseite';
-$string['loginpage_image_help'] = 'Ersetzt das Standardbild auf der Anmeldeseite durch ein eigenes Bild, z. B. ein Schulfoto.';
+$string['loginpage_formposition'] = 'Position des Anmeldefensters';
+$string['loginpage_formposition_help'] = 'Legt fest, wo das Anmeldefenster steht: links, in der Mitte oder rechts. Bei „Hintergrundbild über die gesamte Seite“ sind alle drei Positionen möglich. Im zweigeteilten Standardlayout stehen das Bild und das Anmeldefenster nebeneinander; dort bedeutet „Links“, dass das Anmeldefenster links und das Bild rechts steht, „Mitte“ und „Rechts“ entsprechen dem Standard.';
+$string['loginpage_fullbackground'] = 'Hintergrundbild über die gesamte Seite';
+$string['loginpage_fullbackground_help'] = 'Zeigt das Hintergrundbild über die ganze Anmeldeseite statt nur im linken Bereich. Das Anmeldefenster liegt dann als Kasten über dem Bild. Ohne hochgeladenes Bild wird ein einfacher hellgrauer Hintergrund verwendet.';
+$string['loginpage_hidepanel'] = 'Info-Kachel ausblenden';
+$string['loginpage_hidepanel_help'] = 'Blendet die Info-Kachel aus, die Moodle ab Version 5.2 auf der Anmeldeseite zeigt (Willkommenstext und Zahlen zu Moodle). Achtung: Auch der unten eingegebene Hinweistext erscheint in dieser Kachel und wird dann nicht angezeigt.';
+$string['loginpage_image'] = 'Hintergrundbilder für die Anmeldeseite';
+$string['loginpage_image_help'] = 'Eigene Bilder für die Anmeldeseite, z. B. Schulfotos (bis zu 10 Bilder, je max. 3 MB). Bei mehreren Bildern wird bei jedem Aufruf zufällig ein Startbild gewählt und danach im eingestellten Takt gewechselt. Ohne Bilder bleibt das Standardbild von Moodle erhalten.';
 $string['loginpage_instructions'] = 'Hinweistext auf der Anmeldeseite';
 $string['loginpage_instructions_help'] = 'Dieser Text erscheint links neben dem Anmeldeformular in einer grauen Box, z. B. als kurze Erklärung, wer sich hier anmeldet oder an wen man sich bei Problemen wendet.
 
 Es handelt sich um dieselbe Einstellung wie „Anleitung“ unter Website-Administration → Anmelden → Anmeldeeinstellungen. Eine Änderung hier wirkt sofort auf der echten Anmeldeseite.
 
 Wenn das Feld leer bleibt, zeigt Moodle wieder seinen eigenen Standardtext an.';
+$string['loginpage_interval'] = 'Bildwechsel';
+$string['loginpage_interval_help'] = 'Legt fest, nach wie vielen Sekunden bei mehreren Bildern zum nächsten Bild übergeblendet wird. „Nicht wechseln“ zeigt nur das zufällig gewählte Startbild. Bei aktivierter Einstellung „Bewegung reduzieren“ im Betriebssystem findet kein Wechsel statt.';
+$string['loginpage_interval_off'] = 'Nicht wechseln';
+$string['loginpage_interval_seconds'] = 'Alle {$a} Sekunden';
+$string['loginpage_position_center'] = 'Mitte';
+$string['loginpage_position_left'] = 'Links';
+$string['loginpage_position_right'] = 'Rechts';
 $string['loginpageheader'] = 'Anmeldeseite';
 $string['loglifetime_easyadmin'] = 'Logdaten aufbewahren für';
 $string['loglifetime_easyadmin_help'] = 'Legt fest, wie lange Moodle Protokolldaten (wer hat wann was gemacht) speichert, bevor sie automatisch gelöscht werden. Aus Datenschutzgründen bietet diese Auswahl bewusst keine "Nie löschen"-Option an. Werte unter 30 Tagen werden nicht empfohlen, da dann z. B. Statistiken nicht mehr zuverlässig funktionieren.';

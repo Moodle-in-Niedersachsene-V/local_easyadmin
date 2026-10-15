@@ -11,7 +11,7 @@ Website-Administration, nicht als Ersatz dafür.
 
 | Kachel | Funktionen |
 | --- | --- |
-| **Design** | Logo, Hintergrundbild/-farbe, Textfarbe/-größe, Begrüßungs-Popup, Anmeldeseiten-Bild |
+| **Design** | Logo, Hintergrundbild/-farbe, Textfarbe/-größe, Begrüßungs-Popup, Anmeldeseite (Info-Kachel aus, Hintergrundbilder im Wechsel, Position des Anmeldefensters) |
 | **Startseite** | Name, Kurzbezeichnung, Beschreibung, Anzeigeoptionen, Kursbeschreibung-Block |
 | **Nutzer & Globale Gruppen** | Nutzerkonten anlegen (einzeln/mehrere), globale Gruppen (Kohorten) |
 | **Kurse** | Kategorien, Kurse anlegen/verschieben/archivieren/sichern/löschen |

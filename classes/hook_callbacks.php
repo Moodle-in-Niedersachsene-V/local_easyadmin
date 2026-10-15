@@ -144,7 +144,7 @@ class hook_callbacks {
         // Regel = Moodle-Standardbreite bleibt unverändert.
         $pagewidth = get_config('local_easyadmin', 'page_width');
         $allowedwidths = ['1200px', '1400px', '100%'];
-        if (!empty($pagewidth) && in_array($pagewidth, $allowedwidths, true)) {
+        if (!empty($pagewidth) && in_array($pagewidth, $allowedwidths, true) && (string) $PAGE->pagelayout !== 'login') {
             // Neben dem Inhaltsbereich auch Seitenkopf, Fußleiste und klebende
             // Fußleiste anpassen, die Boost auf dieselbe schmale Breite begrenzt.
             $rules[] = '#page-content, .course-content, #page.container-fluid, .main-inner, '
@@ -156,25 +156,21 @@ class hook_callbacks {
             $hook->add_html('<style id="local_easyadmin_design">' . implode(' ', $rules) . '</style>');
         }
 
-        // Anmeldeseiten-Überschreibung (ersetzt das seit Moodle 5.2 mitgelieferte
-        // Standard-KI-Bild). Nur auf der Anmeldeseite selbst aktiv.
-        $onloginpage = (strpos((string) $PAGE->pagetype, 'login-') === 0);
-        if ($onloginpage && !empty(get_config('local_easyadmin', 'loginpage_hidedefaultimage'))) {
+        // Anmeldeseite (Moodle 5.2+: zweigeteiltes Layout mit Info-Kachel).
+        if ((string) $PAGE->pagelayout === 'login') {
             self::output_loginpage_override($hook, $context, $fs);
         }
     }
 
     /**
-     * Überschreibt/entfernt das Standard-Anmeldeseiten-Bild.
+     * Passt die Anmeldeseite an (Layout seit Moodle 5.2: links ein Bild-Bereich
+     * mit Info-Kachel, rechts das Anmeldeformular).
      *
-     * Da die genaue HTML-Struktur der seit Moodle 5.2 neu gestalteten
-     * Anmeldeseite von Version zu Version variieren kann, wird bewusst mit
-     * mehreren, möglichst robusten CSS-Regeln UND einem vorsichtigen
-     * JavaScript-Fallback gearbeitet, der das Bild-Element anhand seines
-     * sichtbaren Bildunterschrift-Textes ("KI-generiertes Bild"/"AI-generated
-     * image") sucht. Der JS-Teil ist bewusst defensiv (try/catch, keine
-     * Fehler bei abweichender Struktur) und verändert nichts, wenn nichts
-     * gefunden wird.
+     * Möglich sind: Info-Kachel ausblenden, eigene Hintergrundbilder (auch
+     * mehrere im Wechsel) im linken Bereich oder über die gesamte Seite sowie
+     * die Position des Anmeldefensters (links, mittig, rechts). Es werden nur
+     * feste, aus Listen geprüfte Werte und Adressen eigener Dateien in das CSS
+     * übernommen.
      *
      * @param \core\hook\output\before_standard_head_html_generation $hook
      * @param \context_system $context
@@ -186,57 +182,112 @@ class hook_callbacks {
         \context_system $context,
         \file_storage $fs
     ): void {
-        $customimageurl = null;
-        $files = $fs->get_area_files($context->id, 'local_easyadmin', 'loginpageimage', 0, 'itemid', false);
-        if ($files) {
-            $file = reset($files);
-            $customimageurl = \moodle_url::make_pluginfile_url(
+        global $CFG;
+        require_once($CFG->dirroot . '/local/easyadmin/lib.php');
+
+        $hidepanel = !empty(get_config('local_easyadmin', 'loginpage_hidepanel'));
+        $full = !empty(get_config('local_easyadmin', 'loginpage_fullbackground'));
+        $position = (string) get_config('local_easyadmin', 'loginpage_formposition');
+        if (!in_array($position, LOCAL_EASYADMIN_LOGINPAGE_POSITIONS, true)) {
+            $position = 'right';
+        }
+        $intervalraw = get_config('local_easyadmin', 'loginpage_interval');
+        $interval = ($intervalraw === false || $intervalraw === '') ? 10 : (int) $intervalraw;
+        if (!in_array($interval, LOCAL_EASYADMIN_LOGINPAGE_INTERVALS, true)) {
+            $interval = 10;
+        }
+
+        $urls = [];
+        $files = $fs->get_area_files($context->id, 'local_easyadmin', 'loginpageimage', 0, 'filepath, filename', false);
+        foreach (array_slice(array_values($files), 0, LOCAL_EASYADMIN_LOGINPAGE_MAXIMAGES) as $file) {
+            $urls[] = \moodle_url::make_pluginfile_url(
                 $context->id,
                 'local_easyadmin',
                 'loginpageimage',
                 0,
                 $file->get_filepath(),
                 $file->get_filename()
-            )->out();
+            )->out(false);
         }
 
-        // CSS-Overrides mit hoher Spezifität/!important, da Moodles eigene
-        // Login-Styles erfahrungsgemäß sehr bestimmt sind.
-        $css = 'body.pagelayout-login { background-image: none !important; }';
-        if ($customimageurl !== null) {
-            $css .= ' body.pagelayout-login { background-image: url("' . $customimageurl . '") !important; '
-                . 'background-size: cover !important; background-position: center !important; }';
+        $rules = [];
+        $body = 'body.pagelayout-login';
+
+        if ($hidepanel) {
+            $rules[] = $body . ' .login-layout-left-content { display: none !important; }';
         }
 
-        $hook->add_html('<style id="local_easyadmin_loginpage">' . $css . '</style>');
+        // Zufälliges Startbild; bei mehreren Bildern wechselt ein Skript durch.
+        $start = $urls ? random_int(0, count($urls) - 1) : 0;
+        $baseimage = $urls ? 'url("' . addcslashes($urls[$start], '"\\') . '")' : '';
 
-        // JS-Fallback: Bildunterschrift-Text suchen und das umgebende
-        // Bild-Panel ausblenden bzw. das Bild darin austauschen.
-        $customimagejson = $customimageurl !== null ? json_encode($customimageurl) : 'null';
-        $hook->add_html('<script>(function() {'
-            . 'try {'
-            . '  var captions = ["KI-generiertes Bild", "AI-generated image"];'
-            . '  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);'
-            . '  var node, target = null;'
-            . '  while ((node = walker.nextNode())) {'
-            . '    var text = (node.textContent || "").trim();'
-            . '    if (captions.indexOf(text) !== -1) {'
-            . '      target = node.parentElement;'
-            . '      break;'
-            . '    }'
-            . '  }'
-            . '  if (!target) { return; }'
-            . '  var customimage = ' . $customimagejson . ';'
-            . '  var panel = target.closest("div, section, aside") || target;'
-            . '  var img = panel.querySelector ? panel.querySelector("img") : null;'
-            . '  if (customimage && img) {'
-            . '    img.src = customimage;'
-            . '    target.style.display = "none";'
-            . '  } else {'
-            . '    panel.style.display = "none";'
-            . '  }'
-            . '} catch (e) { /* Struktur unbekannt - keine Änderung vornehmen. */ }'
-            . '})();</script>');
+        if ($full) {
+            // Hintergrundbild über die gesamte Seite, Info-Bereich entfällt.
+            $rules[] = $body . ' #page .login-layout-left { display: none !important; }';
+            $rules[] = $body . ' #page { background-color: transparent; }';
+            if ($baseimage !== '') {
+                $rules[] = $body . ' { background-image: ' . $baseimage . '; background-size: cover; '
+                    . 'background-position: center; background-attachment: fixed; }';
+            } else {
+                $rules[] = $body . ' { background-color: #eef1f5; }';
+            }
+            $justify = ['left' => 'flex-start', 'center' => 'center', 'right' => 'flex-end'][$position];
+            $rules[] = $body . ' #page-content { justify-content: ' . $justify . '; }';
+            $rules[] = $body . ' #page-content #region-main { flex: 0 0 auto; width: min(100%, 640px); }';
+            $rules[] = $body . ' .login-layout-right-content { background-color: #fff; border-radius: 0.5rem; '
+                . 'padding: 2rem; box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25); }';
+        } else {
+            // Zweigeteiltes Layout bleibt; Bild(er) ersetzen das Standardbild links.
+            if ($baseimage !== '') {
+                $rules[] = $body . ' #page .login-layout-left { background-image: ' . $baseimage
+                    . ' !important; background-size: cover !important; background-position: center !important; }';
+                // Der Hinweis "KI-generiertes Bild" gilt nur für Moodles Standardbild.
+                $rules[] = $body . ' #page .login-layout-left::after { display: none !important; }';
+            }
+            if ($position === 'left') {
+                $rules[] = $body . ' #page-content { flex-direction: row-reverse; }';
+            }
+        }
+
+        $rules[] = '.local-easyadmin-loginbg { position: absolute; top: 0; right: 0; bottom: 0; left: 0; '
+            . 'z-index: 0; overflow: hidden; pointer-events: none; }';
+        $rules[] = '.local-easyadmin-loginbg-full { position: fixed; z-index: -1; }';
+        $rules[] = '.local-easyadmin-loginbg div { position: absolute; top: 0; right: 0; bottom: 0; left: 0; '
+            . 'background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease; }';
+        $rules[] = '.local-easyadmin-loginbg div.local-easyadmin-active { opacity: 1; }';
+        $rules[] = $body . ' .login-layout-left-content { position: relative; z-index: 1; }';
+        $rules[] = '@media (prefers-reduced-motion: reduce) { .local-easyadmin-loginbg div { transition: none; } }';
+
+        $hook->add_html('<style id="local_easyadmin_loginpage">' . implode(' ', $rules) . '</style>');
+
+        if (count($urls) > 1 && $interval > 0) {
+            $hook->add_html('<script>document.addEventListener("DOMContentLoaded", function() {'
+                . 'try {'
+                . '  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { return; }'
+                . '  var urls = ' . json_encode($urls) . ';'
+                . '  var full = ' . ($full ? 'true' : 'false') . ';'
+                . '  var host = full ? document.body : document.querySelector(".login-layout-left");'
+                . '  if (!host) { return; }'
+                . '  var wrap = document.createElement("div");'
+                . '  wrap.className = "local-easyadmin-loginbg" + (full ? " local-easyadmin-loginbg-full" : "");'
+                . '  wrap.setAttribute("aria-hidden", "true");'
+                . '  var layers = urls.map(function(url) {'
+                . '    var layer = document.createElement("div");'
+                . '    layer.style.backgroundImage = "url(\"" + url + "\")";'
+                . '    wrap.appendChild(layer);'
+                . '    return layer;'
+                . '  });'
+                . '  host.insertBefore(wrap, host.firstChild);'
+                . '  var current = ' . $start . ';'
+                . '  layers[current].classList.add("local-easyadmin-active");'
+                . '  setInterval(function() {'
+                . '    layers[current].classList.remove("local-easyadmin-active");'
+                . '    current = (current + 1) % layers.length;'
+                . '    layers[current].classList.add("local-easyadmin-active");'
+                . '  }, ' . ($interval * 1000) . ');'
+                . '} catch (e) { /* Struktur unbekannt - keine Änderung vornehmen. */ }'
+                . '});</script>');
+        }
     }
 
     /**

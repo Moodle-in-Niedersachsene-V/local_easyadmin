@@ -118,17 +118,24 @@ class design_form extends \moodleform {
         $mform->setDefault('pagewidth', '');
         $mform->addHelpButton('pagewidth', 'pagewidth', 'local_easyadmin');
 
-        // Anmeldeseite (überschreibt das von Moodle seit 5.2 mitgelieferte
-        // Standard-KI-Bild auf der Login-Seite).
+        // Anmeldeseite: Info-Kachel ausblenden, Hintergrundbilder (auch mehrere
+        // im Wechsel) und Position des Anmeldefensters.
         $mform->addElement('header', 'loginpageheader', get_string('loginpageheader', 'local_easyadmin'));
         $mform->setExpanded('loginpageheader', true);
 
         $mform->addElement(
             'advcheckbox',
-            'loginpage_hidedefaultimage',
-            get_string('loginpage_hidedefaultimage', 'local_easyadmin')
+            'loginpage_hidepanel',
+            get_string('loginpage_hidepanel', 'local_easyadmin')
         );
-        $mform->addHelpButton('loginpage_hidedefaultimage', 'loginpage_hidedefaultimage', 'local_easyadmin');
+        $mform->addHelpButton('loginpage_hidepanel', 'loginpage_hidepanel', 'local_easyadmin');
+
+        $mform->addElement(
+            'advcheckbox',
+            'loginpage_fullbackground',
+            get_string('loginpage_fullbackground', 'local_easyadmin')
+        );
+        $mform->addHelpButton('loginpage_fullbackground', 'loginpage_fullbackground', 'local_easyadmin');
 
         $mform->addElement(
             'filemanager',
@@ -137,13 +144,42 @@ class design_form extends \moodleform {
             null,
             [
                 'subdirs' => 0,
-                'maxfiles' => 1,
+                'maxfiles' => LOCAL_EASYADMIN_LOGINPAGE_MAXIMAGES,
                 'maxbytes' => 3 * 1024 * 1024,
                 'accepted_types' => ['web_image'],
             ]
         );
         $mform->addHelpButton('loginpage_image', 'loginpage_image', 'local_easyadmin');
-        $mform->hideIf('loginpage_image', 'loginpage_hidedefaultimage', 'notchecked');
+
+        $intervaloptions = [];
+        foreach (LOCAL_EASYADMIN_LOGINPAGE_INTERVALS as $seconds) {
+            $intervaloptions[$seconds] = $seconds === 0
+                ? get_string('loginpage_interval_off', 'local_easyadmin')
+                : get_string('loginpage_interval_seconds', 'local_easyadmin', $seconds);
+        }
+        $mform->addElement(
+            'select',
+            'loginpage_interval',
+            get_string('loginpage_interval', 'local_easyadmin'),
+            $intervaloptions
+        );
+        $mform->setType('loginpage_interval', PARAM_INT);
+        $mform->setDefault('loginpage_interval', 10);
+        $mform->addHelpButton('loginpage_interval', 'loginpage_interval', 'local_easyadmin');
+
+        $mform->addElement(
+            'select',
+            'loginpage_formposition',
+            get_string('loginpage_formposition', 'local_easyadmin'),
+            [
+                'left' => get_string('loginpage_position_left', 'local_easyadmin'),
+                'center' => get_string('loginpage_position_center', 'local_easyadmin'),
+                'right' => get_string('loginpage_position_right', 'local_easyadmin'),
+            ]
+        );
+        $mform->setType('loginpage_formposition', PARAM_ALPHA);
+        $mform->setDefault('loginpage_formposition', 'right');
+        $mform->addHelpButton('loginpage_formposition', 'loginpage_formposition', 'local_easyadmin');
 
         // Hinweistext neben der Anmeldemaske. Dieses Feld bearbeitet die
         // Moodle-Kerneinstellung auth_instructions (Website-Administration >

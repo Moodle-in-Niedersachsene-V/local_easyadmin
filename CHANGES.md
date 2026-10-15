@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0
+
+- **Design, Anmeldeseite (Moodle 5.2+)**: Info-Kachel ausblendbar,
+  Hintergrundbild über die gesamte Seite, bis zu 10 Bilder im zufälligen
+  Start und einstellbarem Bildwechsel, Anmeldefenster links, mittig oder
+  rechts (jeweils mit Kontexthilfe). Ersetzt die frühere Einstellung
+  „Standard-Bild ausblenden/ersetzen“
+
 ## 1.3.0
 
 - **Neue Kachel „Blöcke"**: zusätzliche Block-Bereiche im Inhaltsbereich

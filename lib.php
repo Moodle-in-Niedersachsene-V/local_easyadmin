@@ -544,3 +544,12 @@ function local_easyadmin_get_schooltiles_align(): string {
 
 /** Schlüssel der zusätzlichen Block-Bereiche (Seite_Position). */
 define('LOCAL_EASYADMIN_BLOCK_AREAS', ['frontpage_top', 'frontpage_bottom', 'course_top', 'course_bottom']);
+
+/** Maximale Anzahl Hintergrundbilder der Anmeldeseite. */
+define('LOCAL_EASYADMIN_LOGINPAGE_MAXIMAGES', 10);
+
+/** Erlaubte Wechselintervalle der Anmeldeseiten-Bilder in Sekunden (0 = kein Wechsel). */
+define('LOCAL_EASYADMIN_LOGINPAGE_INTERVALS', [0, 5, 10, 15, 30, 60]);
+
+/** Erlaubte Positionen des Anmeldefensters. */
+define('LOCAL_EASYADMIN_LOGINPAGE_POSITIONS', ['left', 'center', 'right']);
