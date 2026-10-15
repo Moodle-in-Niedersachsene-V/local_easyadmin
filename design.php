@@ -165,6 +165,13 @@ if ($mform->is_cancelled()) {
             'local_easyadmin'
         );
     }
+    $guestorder = (string) ($data->loginpage_guestorder ?? 'default');
+    set_config(
+        'loginpage_guestorder',
+        in_array($guestorder, LOCAL_EASYADMIN_LOGINPAGE_GUESTORDERS, true) ? $guestorder : 'default',
+        'local_easyadmin'
+    );
+    set_config('loginpage_instructionsintop', !empty($data->loginpage_instructionsintop) ? 1 : 0, 'local_easyadmin');
     $formposition = (string) ($data->loginpage_formposition ?? 'right');
     set_config(
         'loginpage_formposition',
@@ -255,6 +262,8 @@ if ($mform->is_cancelled()) {
     $currentdata->loginpage_fullbackground = (int) !empty(get_config('local_easyadmin', 'loginpage_fullbackground'));
     $savedinterval = get_config('local_easyadmin', 'loginpage_interval');
     $currentdata->loginpage_interval = ($savedinterval === false || $savedinterval === '') ? 10 : (int) $savedinterval;
+    $currentdata->loginpage_guestorder = get_config('local_easyadmin', 'loginpage_guestorder') ?: 'default';
+    $currentdata->loginpage_instructionsintop = (int) !empty(get_config('local_easyadmin', 'loginpage_instructionsintop'));
     $savedopacity = get_config('local_easyadmin', 'loginpage_boxopacity');
     $currentdata->loginpage_boxopacity = ($savedopacity === false || $savedopacity === '') ? 100 : (int) $savedopacity;
     $currentdata->loginpage_formposition = get_config('local_easyadmin', 'loginpage_formposition') ?: 'right';

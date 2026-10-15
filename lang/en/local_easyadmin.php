@@ -253,6 +253,11 @@ $string['loginpage_formposition'] = 'Login window position';
 $string['loginpage_formposition_help'] = 'Determines where the login window is placed: left, centre or right. With "Background image across the whole page" all three positions are possible. In the split default layout the image and the login window are side by side; there "Left" puts the login window on the left and the image on the right, "Centre" and "Right" correspond to the default.';
 $string['loginpage_fullbackground'] = 'Background image across the whole page';
 $string['loginpage_fullbackground_help'] = 'Shows the background image across the whole login page instead of only in the left area. The login window then appears as a box on top of the image. Without an uploaded image, a plain light grey background is used.';
+$string['loginpage_guestorder'] = 'Guest login order';
+$string['loginpage_guestorder_aboveproviders'] = 'Guest before the other login methods (e.g. OpenID Connect)';
+$string['loginpage_guestorder_default'] = 'Default (guest at the bottom)';
+$string['loginpage_guestorder_help'] = 'Determines where the "Log in as a guest" button appears in the login window. "Guest before the other login methods" places it directly below "OR", before login via external providers. "Guest at the very top" places it directly below the heading, before the form with username and password. Only has an effect if guest login is allowed in Moodle.';
+$string['loginpage_guestorder_top'] = 'Guest at the very top (above username and password)';
 $string['loginpage_hidepanel'] = 'Hide info panel';
 $string['loginpage_hidepanel_help'] = 'Hides the info panel that Moodle shows on the login page since version 5.2 (welcome text and figures about Moodle). Note: the instructions text entered below also appears in this panel and will then not be shown.';
 $string['loginpage_image'] = 'Background images for the login page';
@@ -263,6 +268,9 @@ $string['loginpage_instructions_help'] = 'This text appears next to the login fo
 It is the same setting as "Instructions" under Site administration → Authentication → Manage authentication. Changes take effect on the real login page immediately.
 
 If the field is left empty, Moodle shows its own default text again.';
+$string['loginpage_instructionsintop'] = 'Instructions text in the login window';
+$string['loginpage_instructionsintop_help'] = 'Shows the instructions text at the top of the login window and replaces the "Welcome" heading together with the "Log in to ..." line. If no instructions text is entered, the default heading is kept. If the info panel on the left is still shown, the text also appears there; hide it if needed.';
+$string['loginpage_instructionsintop_text'] = 'Show instructions text instead of "Welcome"';
 $string['loginpage_interval'] = 'Image change';
 $string['loginpage_interval_help'] = 'Determines after how many seconds the next image is faded in when there are several images. "Do not change" only shows the randomly chosen start image. No change happens if "Reduce motion" is enabled in the operating system.';
 $string['loginpage_interval_off'] = 'Do not change';

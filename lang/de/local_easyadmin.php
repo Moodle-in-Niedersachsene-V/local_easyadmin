@@ -253,6 +253,11 @@ $string['loginpage_formposition'] = 'Position des Anmeldefensters';
 $string['loginpage_formposition_help'] = 'Legt fest, wo das Anmeldefenster steht: links, in der Mitte oder rechts. Bei „Hintergrundbild über die gesamte Seite“ sind alle drei Positionen möglich. Im zweigeteilten Standardlayout stehen das Bild und das Anmeldefenster nebeneinander; dort bedeutet „Links“, dass das Anmeldefenster links und das Bild rechts steht, „Mitte“ und „Rechts“ entsprechen dem Standard.';
 $string['loginpage_fullbackground'] = 'Hintergrundbild über die gesamte Seite';
 $string['loginpage_fullbackground_help'] = 'Zeigt das Hintergrundbild über die ganze Anmeldeseite statt nur im linken Bereich. Das Anmeldefenster liegt dann als Kasten über dem Bild. Ohne hochgeladenes Bild wird ein einfacher hellgrauer Hintergrund verwendet.';
+$string['loginpage_guestorder'] = 'Reihenfolge der Gast-Anmeldung';
+$string['loginpage_guestorder_aboveproviders'] = 'Gast vor den anderen Anmeldearten (z. B. OpenID Connect)';
+$string['loginpage_guestorder_default'] = 'Standard (Gast ganz unten)';
+$string['loginpage_guestorder_help'] = 'Legt fest, wo die Schaltfläche „Als Gast anmelden“ im Anmeldefenster steht. „Gast vor den anderen Anmeldearten“ setzt sie direkt unter „ODER“ vor die Anmeldung über externe Anbieter. „Gast ganz oben“ setzt sie direkt unter die Überschrift, noch vor das Formular mit Anmeldename und Kennwort. Wirkt nur, wenn die Gast-Anmeldung in Moodle erlaubt ist.';
+$string['loginpage_guestorder_top'] = 'Gast ganz oben (über Anmeldename und Kennwort)';
 $string['loginpage_hidepanel'] = 'Info-Kachel ausblenden';
 $string['loginpage_hidepanel_help'] = 'Blendet die Info-Kachel aus, die Moodle ab Version 5.2 auf der Anmeldeseite zeigt (Willkommenstext und Zahlen zu Moodle). Achtung: Auch der unten eingegebene Hinweistext erscheint in dieser Kachel und wird dann nicht angezeigt.';
 $string['loginpage_image'] = 'Hintergrundbilder für die Anmeldeseite';
@@ -263,6 +268,9 @@ $string['loginpage_instructions_help'] = 'Dieser Text erscheint links neben dem 
 Es handelt sich um dieselbe Einstellung wie „Anleitung“ unter Website-Administration → Anmelden → Anmeldeeinstellungen. Eine Änderung hier wirkt sofort auf der echten Anmeldeseite.
 
 Wenn das Feld leer bleibt, zeigt Moodle wieder seinen eigenen Standardtext an.';
+$string['loginpage_instructionsintop'] = 'Hinweistext im Anmeldefenster';
+$string['loginpage_instructionsintop_help'] = 'Zeigt den Hinweistext oben im Anmeldefenster an und ersetzt dafür die Überschrift „Willkommen“ samt dem Text „Anmelden bei …“. Ist kein Hinweistext eingegeben, bleibt die Standardüberschrift erhalten. Steht die Info-Kachel links noch auf der Seite, erscheint der Text dort zusätzlich; blenden Sie sie bei Bedarf aus.';
+$string['loginpage_instructionsintop_text'] = 'Hinweistext statt „Willkommen“ anzeigen';
 $string['loginpage_interval'] = 'Bildwechsel';
 $string['loginpage_interval_help'] = 'Legt fest, nach wie vielen Sekunden bei mehreren Bildern zum nächsten Bild übergeblendet wird. „Nicht wechseln“ zeigt nur das zufällig gewählte Startbild. Bei aktivierter Einstellung „Bewegung reduzieren“ im Betriebssystem findet kein Wechsel statt.';
 $string['loginpage_interval_off'] = 'Nicht wechseln';

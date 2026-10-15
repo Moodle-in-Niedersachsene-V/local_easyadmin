@@ -556,3 +556,6 @@ define('LOCAL_EASYADMIN_LOGINPAGE_POSITIONS', ['left', 'center', 'right']);
 
 /** Erlaubte Deckkraftwerte (Prozent) des Anmeldefensters bei Vollbild-Hintergrund. */
 define('LOCAL_EASYADMIN_LOGINPAGE_OPACITIES', [100, 90, 75]);
+
+/** Erlaubte Reihenfolgen der Gast-Anmeldung im Anmeldefenster. */
+define('LOCAL_EASYADMIN_LOGINPAGE_GUESTORDERS', ['default', 'aboveproviders', 'top']);

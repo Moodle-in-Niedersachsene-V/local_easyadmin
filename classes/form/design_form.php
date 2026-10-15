@@ -198,6 +198,20 @@ class design_form extends \moodleform {
         $mform->setDefault('loginpage_formposition', 'right');
         $mform->addHelpButton('loginpage_formposition', 'loginpage_formposition', 'local_easyadmin');
 
+        $mform->addElement(
+            'select',
+            'loginpage_guestorder',
+            get_string('loginpage_guestorder', 'local_easyadmin'),
+            [
+                'default' => get_string('loginpage_guestorder_default', 'local_easyadmin'),
+                'aboveproviders' => get_string('loginpage_guestorder_aboveproviders', 'local_easyadmin'),
+                'top' => get_string('loginpage_guestorder_top', 'local_easyadmin'),
+            ]
+        );
+        $mform->setType('loginpage_guestorder', PARAM_ALPHA);
+        $mform->setDefault('loginpage_guestorder', 'default');
+        $mform->addHelpButton('loginpage_guestorder', 'loginpage_guestorder', 'local_easyadmin');
+
         // Hinweistext neben der Anmeldemaske. Dieses Feld bearbeitet die
         // Moodle-Kerneinstellung auth_instructions (Website-Administration >
         // Anmelden > Anmeldeeinstellungen > "Anleitung"). Bewusst ohne
@@ -219,6 +233,14 @@ class design_form extends \moodleform {
         );
         $mform->setType('loginpage_instructions', PARAM_RAW);
         $mform->addHelpButton('loginpage_instructions', 'loginpage_instructions', 'local_easyadmin');
+
+        $mform->addElement(
+            'advcheckbox',
+            'loginpage_instructionsintop',
+            get_string('loginpage_instructionsintop', 'local_easyadmin'),
+            get_string('loginpage_instructionsintop_text', 'local_easyadmin')
+        );
+        $mform->addHelpButton('loginpage_instructionsintop', 'loginpage_instructionsintop', 'local_easyadmin');
 
         // Begrüßungs-Popup.
         $mform->addElement('header', 'welcomepopupheader', get_string('welcomepopupheader', 'local_easyadmin'));

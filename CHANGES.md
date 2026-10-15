@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.0
+
+- **Anmeldeseite**: Deckkraft des Anmeldefensters einstellbar (Standard
+  deckend), Gast-Anmeldung wahlweise vor die externen Anbieter oder ganz
+  nach oben setzbar, Hinweistext kann die Überschrift „Willkommen“ im
+  Anmeldefenster ersetzen
+
 ## 1.4.0
 
 - **Design, Anmeldeseite (Moodle 5.2+)**: Info-Kachel ausblendbar,

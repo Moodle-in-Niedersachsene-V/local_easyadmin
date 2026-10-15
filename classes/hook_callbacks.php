@@ -266,7 +266,53 @@ class hook_callbacks {
         $rules[] = $body . ' .login-layout-left-content { position: relative; z-index: 1; }';
         $rules[] = '@media (prefers-reduced-motion: reduce) { .local-easyadmin-loginbg div { transition: none; } }';
 
+        // Reihenfolge im Anmeldefenster: Gast-Anmeldung nach oben holen.
+        $guestorder = (string) get_config('local_easyadmin', 'loginpage_guestorder');
+        if (in_array($guestorder, ['aboveproviders', 'top'], true)) {
+            $rules[] = $body . ' .loginform { display: flex; flex-direction: column; }';
+            $rules[] = $body . ' .loginform > .login-languagemenu { order: 3; }';
+            $rules[] = $body . ' .loginform > .login-cookiesnotice { order: 4; }';
+            if ($guestorder === 'aboveproviders') {
+                $rules[] = $body . ' .loginform > #guestlogin { order: 1; }';
+                $rules[] = $body . ' .loginform > .login-identityproviders { order: 2; }';
+            } else {
+                $rules[] = $body . ' .loginform > #loginlogo { order: -6; }';
+                $rules[] = $body . ' .loginform > .local-easyadmin-logininfo { order: -5; }';
+                $rules[] = $body . ' .loginform > h1 { order: -5; }';
+                $rules[] = $body . ' .loginform > p.text-muted { order: -4; }';
+                $rules[] = $body . ' .loginform > .alert { order: -3; }';
+                $rules[] = $body . ' .loginform > #guestlogin { order: -2; }';
+            }
+        }
+
         $hook->add_html('<style id="local_easyadmin_loginpage">' . implode(' ', $rules) . '</style>');
+
+        // Hinweistext statt Überschrift "Willkommen" im Anmeldefenster. Der
+        // bereinigte Text steht in einem inaktiven template-Element und wird
+        // per Skript an die Stelle der Überschrift gesetzt.
+        $instructions = (string) get_config('core', 'auth_instructions');
+        if (!empty(get_config('local_easyadmin', 'loginpage_instructionsintop')) && trim(strip_tags($instructions)) !== '') {
+            $hook->add_html('<template id="local-easyadmin-logininfo">'
+                . format_text($instructions, FORMAT_HTML, ['context' => $context, 'noclean' => false])
+                . '</template>');
+            $hook->add_html('<script>document.addEventListener("DOMContentLoaded", function() {'
+                . 'try {'
+                . '  var tpl = document.getElementById("local-easyadmin-logininfo");'
+                . '  var form = document.querySelector(".loginform");'
+                . '  var heading = form ? form.querySelector(":scope > h1") : null;'
+                . '  if (!tpl || !heading) { return; }'
+                . '  var holder = document.createElement("div");'
+                . '  holder.className = "local-easyadmin-logininfo mb-4";'
+                . '  holder.appendChild(tpl.content.cloneNode(true));'
+                . '  form.insertBefore(holder, heading);'
+                . '  heading.style.display = "none";'
+                . '  var sub = heading.nextElementSibling;'
+                . '  if (sub && sub.tagName === "P" && sub.classList.contains("text-muted")) { sub.style.display = "none"; }'
+                . '  var dup = form.querySelector(":scope > div.d-lg-none");'
+                . '  if (dup) { dup.style.display = "none"; }'
+                . '} catch (e) { /* Struktur unbekannt - keine Änderung vornehmen. */ }'
+                . '});</script>');
+        }
 
         if (count($urls) > 1 && $interval > 0) {
             $hook->add_html('<script>document.addEventListener("DOMContentLoaded", function() {'
