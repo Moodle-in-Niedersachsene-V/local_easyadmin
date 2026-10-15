@@ -145,7 +145,10 @@ class hook_callbacks {
         $pagewidth = get_config('local_easyadmin', 'page_width');
         $allowedwidths = ['1200px', '1400px', '100%'];
         if (!empty($pagewidth) && in_array($pagewidth, $allowedwidths, true)) {
-            $rules[] = '#page-content, .course-content, #page.container-fluid, .main-inner '
+            // Neben dem Inhaltsbereich auch Seitenkopf, Fußleiste und klebende
+            // Fußleiste anpassen, die Boost auf dieselbe schmale Breite begrenzt.
+            $rules[] = '#page-content, .course-content, #page.container-fluid, .main-inner, '
+                . '.header-maxwidth, .footer-popover, .sticky-footer-content '
                 . '{ max-width: ' . $pagewidth . ' !important; margin-left: auto; margin-right: auto; }';
         }
 

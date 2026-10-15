@@ -6,6 +6,8 @@
   oben und unten, einzeln für die Startseite und die Kurs-Hauptseite
   aktivierbar (jeweils mit Kontexthilfe). Neue Capability
   local/easyadmin:manageblocks
+- **Design**: Die Einstellung „Maximale Seitenbreite“ hat jetzt einen eigenen
+  Abschnitt „Seitenbreite“ und passt auch Seitenkopf und Fußleiste an
 - Kachel „Nutzer & Gruppen" heißt jetzt „Nutzer & Globale Gruppen"
 
 ## 1.2.0

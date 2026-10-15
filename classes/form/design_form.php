@@ -100,6 +100,9 @@ class design_form extends \moodleform {
         $mform->setType('textsize', PARAM_ALPHA);
         $mform->setDefault('textsize', 'normal');
 
+        $mform->addElement('header', 'pagewidthheader', get_string('pagewidthheader', 'local_easyadmin'));
+        $mform->setExpanded('pagewidthheader', true);
+
         // Maximale Seiten-/Inhaltsbreite. Leerer Wert ('') = Moodle-Standard,
         // dann wird keine überschreibende Regel injiziert. Die übrigen Werte
         // sind gültige CSS-Breitenangaben, die direkt in die max-width-Regel
