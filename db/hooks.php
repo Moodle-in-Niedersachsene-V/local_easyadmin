@@ -56,6 +56,11 @@ $callbacks = [
         'priority' => 600,
     ],
     [
+        'hook' => \core\hook\output\before_standard_top_of_body_html_generation::class,
+        'callback' => [\local_easyadmin\hook_callbacks::class, 'render_schooltiles_top'],
+        'priority' => 300,
+    ],
+    [
         'hook' => \core\hook\output\before_footer_html_generation::class,
         'callback' => [\local_easyadmin\hook_callbacks::class, 'render_schooltiles'],
         'priority' => 500,

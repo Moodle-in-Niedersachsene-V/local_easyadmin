@@ -481,26 +481,74 @@ class hook_callbacks {
      * Beschränkung auf die tatsächliche Startseite (vorher plugin-weit auf
      * jeder Seite aktiv).
      *
+     * Steht die Position auf "unten", erscheinen die Kacheln hier (Fußbereich).
+     *
      * @param \core\hook\output\before_footer_html_generation $hook
      * @return void
      */
     public static function render_schooltiles(\core\hook\output\before_footer_html_generation $hook): void {
+        global $CFG;
+        require_once($CFG->dirroot . '/local/easyadmin/lib.php');
+
+        if (local_easyadmin_get_schooltiles_position() !== 'bottom') {
+            return;
+        }
+        $html = self::build_schooltiles_html();
+        if ($html !== '') {
+            $hook->add_html($html);
+        }
+    }
+
+    /**
+     * Zeigt die Schul-Kacheln oben auf der Startseite an, wenn die Position
+     * "oben" gewählt ist. Ein kleines Skript setzt sie an den Anfang des
+     * Inhaltsbereichs; ohne Skript stehen sie ganz oben auf der Seite.
+     *
+     * @param \core\hook\output\before_standard_top_of_body_html_generation $hook
+     * @return void
+     */
+    public static function render_schooltiles_top(
+        \core\hook\output\before_standard_top_of_body_html_generation $hook
+    ): void {
+        global $CFG;
+        require_once($CFG->dirroot . '/local/easyadmin/lib.php');
+
+        if (local_easyadmin_get_schooltiles_position() !== 'top') {
+            return;
+        }
+        $html = self::build_schooltiles_html();
+        if ($html === '') {
+            return;
+        }
+        $hook->add_html($html);
+        $hook->add_html('<script>document.addEventListener("DOMContentLoaded", function() {'
+            . 'var tiles = document.querySelector(".local-easyadmin-schooltiles");'
+            . 'var main = document.getElementById("region-main");'
+            . 'if (tiles && main) { main.insertBefore(tiles, main.firstChild); }'
+            . '});</script>');
+    }
+
+    /**
+     * Erzeugt das HTML der Schul-Kacheln (leer, wenn nichts anzuzeigen ist).
+     *
+     * @return string
+     */
+    protected static function build_schooltiles_html(): string {
         global $CFG, $PAGE, $DB, $USER, $OUTPUT;
+        require_once($CFG->dirroot . '/local/easyadmin/lib.php');
 
         if ($PAGE->pagetype !== 'site-index') {
-            return;
+            return '';
         }
 
         if (empty(get_config('local_easyadmin', 'schooltiles_enabled'))) {
-            return;
+            return '';
         }
-
-        require_once($CFG->dirroot . '/local/easyadmin/lib.php');
 
         $context = context_system::instance();
         $tilecount = (int) (get_config('local_easyadmin', 'schooltiles_count') ?: 0);
         if ($tilecount === 0) {
-            return;
+            return '';
         }
 
         $canmanage = has_capability('local/easyadmin:manageschooltiles', $context);
@@ -563,7 +611,7 @@ class hook_callbacks {
         }
 
         if (empty($tiles)) {
-            return;
+            return '';
         }
 
         $templatecontext = [
@@ -574,8 +622,7 @@ class hook_callbacks {
             'alignclass' => 'local-easyadmin-align-' . local_easyadmin_get_schooltiles_align(),
         ];
 
-        $html = $OUTPUT->render_from_template('local_easyadmin/schooltiles', $templatecontext);
-        $hook->add_html($html);
+        return $OUTPUT->render_from_template('local_easyadmin/schooltiles', $templatecontext);
     }
 
     /** @var array Aktive zusätzliche Block-Bereiche dieses Seitenaufrufs (Position => Regionsname). */

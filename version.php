@@ -25,8 +25,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_easyadmin';
-$plugin->version   = 2026101505;      // YYYYMMDDNN.
+$plugin->version   = 2026110901;      // YYYYMMDDNN.
 $plugin->requires  = 2025041400;      // Moodle 5.1 (5.x line).
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '1.5.0';
+$plugin->release   = '1.6.0';
 $plugin->maintainer = 'Moodle in Niedersachsen e. V.';

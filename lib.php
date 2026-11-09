@@ -559,3 +559,16 @@ define('LOCAL_EASYADMIN_LOGINPAGE_OPACITIES', [100, 90, 75]);
 
 /** Erlaubte Reihenfolgen der Gast-Anmeldung im Anmeldefenster. */
 define('LOCAL_EASYADMIN_LOGINPAGE_GUESTORDERS', ['default', 'aboveproviders', 'top']);
+
+/** Erlaubte Positionen der Schul-Kacheln auf der Startseite. */
+define('LOCAL_EASYADMIN_SCHOOLTILES_POSITIONS', ['bottom', 'top']);
+
+/**
+ * Liefert die gespeicherte Position der Schul-Kacheln (nur Werte aus der Positivliste).
+ *
+ * @return string bottom oder top
+ */
+function local_easyadmin_get_schooltiles_position(): string {
+    $value = (string) get_config('local_easyadmin', 'schooltiles_position');
+    return in_array($value, LOCAL_EASYADMIN_SCHOOLTILES_POSITIONS, true) ? $value : 'bottom';
+}

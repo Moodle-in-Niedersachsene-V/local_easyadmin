@@ -57,6 +57,19 @@ class schooltilesettings_form extends \moodleform {
         $mform->setType('tilealign', PARAM_ALPHA);
         $mform->addHelpButton('tilealign', 'schooltiles_align', 'local_easyadmin');
 
+        $positionoptions = [
+            'bottom' => get_string('schooltiles_position_bottom', 'local_easyadmin'),
+            'top' => get_string('schooltiles_position_top', 'local_easyadmin'),
+        ];
+        $mform->addElement(
+            'select',
+            'tileposition',
+            get_string('schooltiles_position', 'local_easyadmin'),
+            $positionoptions
+        );
+        $mform->setType('tileposition', PARAM_ALPHA);
+        $mform->addHelpButton('tileposition', 'schooltiles_position', 'local_easyadmin');
+
         $this->add_action_buttons(false, get_string('savechanges'));
     }
 }

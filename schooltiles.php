@@ -206,6 +206,7 @@ $settingsform = new \local_easyadmin\form\schooltilesettings_form($listurl);
 $settingsform->set_data([
     'tilesize' => local_easyadmin_get_schooltiles_size(),
     'tilealign' => local_easyadmin_get_schooltiles_align(),
+    'tileposition' => local_easyadmin_get_schooltiles_position(),
 ]);
 if ($settingsdata = $settingsform->get_data()) {
     require_sesskey();
@@ -217,6 +218,10 @@ if ($settingsdata = $settingsform->get_data()) {
         : 'left';
     set_config('schooltiles_size', $newsize, 'local_easyadmin');
     set_config('schooltiles_align', $newalign, 'local_easyadmin');
+    $newposition = in_array($settingsdata->tileposition, LOCAL_EASYADMIN_SCHOOLTILES_POSITIONS, true)
+        ? $settingsdata->tileposition
+        : 'bottom';
+    set_config('schooltiles_position', $newposition, 'local_easyadmin');
     redirect(
         $listurl,
         get_string('schooltiles_settingssaved', 'local_easyadmin'),

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.0
+
+- **Schul-Kacheln**: neue Einstellung „Position der Kacheln“ (oben am
+  Anfang der Startseite oder unten wie bisher), mit Kontexthilfe
+
 ## 1.5.0
 
 - **Anmeldeseite**: Deckkraft des Anmeldefensters einstellbar (Standard
